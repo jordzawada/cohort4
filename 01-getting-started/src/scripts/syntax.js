@@ -53,14 +53,16 @@ for (a in obj1){
 
 }
 // while
-while (h < 10) {
+while (let h < 10) {
   // code block to be executed
+  h++;
+  console.log(h);
 }
 // do while
 do {
     let lyrics ="the hokey pokey";
   }
-  while (`it's all about`);
+  while (lyrics != `it's all about`);
 
 // forEach (with array and function)
 arr1.forEach(function(currentValue, index, arr1), thisValue);
