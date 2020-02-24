@@ -4,7 +4,7 @@ let x= 5;
 // string
 const greetingPrimary = "Hello you";
 // boolean
-y= false;
+let y= false;
 // array
 const arr1 = [1,2,[5,8],"hello", false]
 // dictionary / objects
@@ -18,10 +18,11 @@ let c;
 
 
 // sample if / else
-if (x>5) {
-    return "number is less than 5";
+let z=0;
+if (z>5) {
+    console.log( "number is less than 5");
 } else {
-    return "number is probably larger than 5";
+    console.log( "number is probably larger than 5");
 }
 
 // functions
@@ -49,28 +50,30 @@ for (let i=0;i>8;i++){
     console.log(i)
 };
 // for/in
+let a= name;
 for (a in obj1){
 
 }
 // while
-while (let h < 10) {
+let h=0;
+while (h < 10) {
   // code block to be executed
   h++;
   console.log(h);
 }
 // do while
-do {
-    let lyrics ="the hokey pokey";
-  }
-  while (lyrics != `it's all about`);
+// do {
+//     let lyrics ="the hokey pokey";
+//   }
+//   while (lyrics != `it's all about`);
 
 // forEach (with array and function)
-arr1.forEach(function(currentValue, index, arr1), thisValue);
+// arr1.forEach(function(currentValue, index, arr1), thisValue);
 
 // Objects / Dictionaries
 // declare object
 const obj2 = {
-    name: jerry
+    name: 'jerry',
 };
 // lookup key to retrieve value
 obj2.name;
