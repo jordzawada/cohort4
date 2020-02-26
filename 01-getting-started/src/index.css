@@ -136,3 +136,13 @@ html {
 .taxCalc{
     border-radius: 5px;
 }
+
+#taxAnswer {
+    display: inline-grid;
+    font-size: 30px;
+    color: black;
+    background: #aaaaaa;
+    border-radius: 25px;
+    padding: 10px 10px 10px 10px;
+
+}

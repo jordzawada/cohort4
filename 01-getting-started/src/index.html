@@ -163,7 +163,7 @@
 
         <h1 id="taxTitle">Canadian Taxes</h1>
         <label for="netIncome">Please Enter Net Income:</label>
-        <input id="netIncome" type="text"><button class="taxCalc" onclick="document.getElementById(`taxAnswer`).innerHTML =taxes(document.getElementById(`netIncome`).value)">Calculate My Taxes</button>
+        <input id="netIncome" type="text"><button class="taxCalc" onclick="document.getElementById(`taxAnswer`).innerHTML ='$'+ taxes(document.getElementById(`netIncome`).value)">Calculate My Taxes</button>
 
         <br>
         <p id="taxAnswer">0</p>
