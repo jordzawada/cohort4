@@ -76,3 +76,10 @@ html {
         min-height: 400px;
     }
 }
+
+#idCalc {
+    display: flex;
+    justify-content: flex-center;
+    margin: 10px 10px 10px 10px
+    box-shadow: 5px;
+}
