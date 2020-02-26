@@ -98,14 +98,15 @@
 
     <!-- the calculator -->
     <div class="w3-content w3-container w3-padding-64 w3-center" id="idCalc">
-        <h1>My Calculator</h1>
-        <script></script>
-        <label for="num1">Number 1:</label>
-        <input type="text" id="num1"></input>
-        <label for="num2">Number 2:</label>
-        <input type="text" id="num2"></input><br>
+        <h1 id="title ">My Calculator</h1>
+        <label class="numInputs" for="num1">Number 1:</label>
+        <input class="numInputs" type="text" id="num1"></input>
+        <label class="numInputs" for="num2">Number 2:</label>
+        <input class="numInputs" type="text" id="num2"></input>
+        <br>
         
-        <button type="button" onclick="add(
+        <!-- logic and buttons that give the answers -->
+        <button id="maths" type="button" onclick="add(
             document.getElementById('num1').value,
         document.getElementById('num2').value)">Sum</button>
         <script type="text/javascript"> 
@@ -115,7 +116,7 @@
          }
         </script>
 
-        <button type="button" onclick="subtract(
+        <button id="maths" type="button" onclick="subtract(
             document.getElementById('num1').value,
         document.getElementById('num2').value)">Difference</button>
         <script type="text/javascript"> 
@@ -125,7 +126,7 @@
             }
            </script>
 
-        <button type="button" onclick="multiply(
+        <button id="maths" type="button" onclick="multiply(
             document.getElementById('num1').value,
         document.getElementById('num2').value)">Product</button>
         <script type="text/javascript"> 
@@ -135,11 +136,11 @@
             }
            </script>
 
-        <button type="button" onclick="multiply(
+        <button id="maths" type="button" onclick="quotient(
             document.getElementById('num1').value,
         document.getElementById('num2').value)">Quotient</button>
         <script type="text/javascript"> 
-            subtract = (num1,num2) => {
+            quotient = (num1,num2) => {
                var x = document.getElementById("answer").textContent; 
                document.getElementById("answer").innerHTML = Number(num1) / Number(num2);    
             }
@@ -149,7 +150,7 @@
         <br>
 
 
-        <label for="output1">Output</label>
+        <label id="answerlabel" for="output1">Result</label><br>
         <p id="answer">-</p>
         <!-- <input type="text" id="output1"></input> -->
 

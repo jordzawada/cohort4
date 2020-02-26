@@ -6,6 +6,7 @@ h4,
 h5,
 h6 {
     font-family: "Lato", sans-serif;
+    margin: 0 auto;
 }
 
 body,
@@ -77,9 +78,52 @@ html {
     }
 }
 
-#idCalc {
+
+/* #idCalc {
     display: flex;
-    justify-content: flex-center;
-    margin: 10px 10px 10px 10px
-    box-shadow: 5px;
+    flex-wrap: wrap;
+    flex:  2 ;
+} */
+
+#title{
+    display: grid;
+    
 }
+
+.numInputs {
+    display: inline-grid;
+    height: 50px;
+    justify-content: center;
+    text-justify: center;
+}
+
+#answerlabel {
+    display: inline-grid;
+    justify-content: center;
+    background-color: #aaaaaa;
+    border-radius: 25px;
+    color: black;
+    padding: 10px 10px 10px 10px;
+}
+
+#answer {
+    display: inline-grid;
+    justify-content: center;
+    background: #aaaaaa;
+    color: black;
+    border-radius: 25px;
+    padding: 10px 10px 10px 10px;
+}
+
+
+
+#maths {
+    display: inline-grid;
+    border-radius: 4px;
+    justify-content: center;
+    height: 50px;
+    border: 1px solid black;
+    margin: 5px 5px 5px 5px;
+    box-shadow: 2 2 10px #ccc;
+    
+} 
