@@ -30,3 +30,12 @@ test('Does that isEven function work?', () => {
     expect(functions.isEven(4)).toBe(true);
     expect(functions.isEven(5)).toBe(false);    
 });
+
+test('Does that taxes function work?', () => {
+    expect(functions.taxes(1.00)).toBe(0.15);
+    expect(functions.taxes(2.00)).toBe(0.3);
+    expect(functions.taxes(50000)).toBe(7580.78);
+    expect(functions.taxes(100000)).toBe(17991.78);
+    expect(functions.taxes(150000)).toBe(30991.78);
+    expect(functions.taxes(250000)).toBe(61402.87);
+});

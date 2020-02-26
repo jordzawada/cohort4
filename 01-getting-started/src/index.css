@@ -115,8 +115,6 @@ html {
     padding: 10px 10px 10px 10px;
 }
 
-
-
 #maths {
     display: inline-grid;
     border-radius: 4px;
@@ -127,3 +125,10 @@ html {
     box-shadow: 2 2 10px #ccc;
     
 } 
+
+
+
+#taxTitle {
+    display: inline-grid
+    justify-content: center;
+}

@@ -33,6 +33,39 @@ const functions = {
         }
     },
 
+    roundToTwo :(num) =>{    
+        return +(Math.round(num + "e+2")  + "e-2");
+    },
+
+    taxes : (income) => {
+        if (income<=48535) {
+            return income*0.15;
+        } else if (income <= 97069) {
+            return functions.roundToTwo((income-48534)*0.205 + 48535*0.15);
+        } else if (income <= 150473) {
+            return functions.roundToTwo(
+                (income-97069)*0.26
+                +(48534)*0.205
+                 + 48535*0.15);
+        } else if ( income <= 214368){
+            return functions.roundToTwo(
+                (income-150473)*0.29
+                +53404*0.26
+                +(48534)*0.205
+                 + 48535*0.15
+            );
+        } else {
+            return functions.roundToTwo(
+                (income-214368)*0.33
+                +63895*0.29
+                +53404*0.26
+                +48534*0.205 
+                +48535*0.15
+            );
+        }
+
+        
+    }
     
 };
 
