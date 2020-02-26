@@ -162,9 +162,47 @@
     <div class="w3-content w3-container w3-padding-64 w3-center taxesMain">
 
         <h1 id="taxTitle">Canadian Taxes</h1>
+        <label for="netIncome">Please Enter Net Income:</label>
+        <input id="netIncome" type="text"><button class="taxCalc" onclick="document.getElementById(`taxAnswer`).innerHTML =taxes(document.getElementById(`netIncome`).value)">Calculate My Taxes</button>
 
+        <br>
+        <p id="taxAnswer">0</p>
+        <!-- <p id="taxAnswer">-</p> -->
 
-        
+        <script type="text/javascript">
+            roundToTwo =(num) =>{    
+            return +(Math.round(num + "e+2")  + "e-2");
+            },
+            taxes = (income) => {
+                if (income<=48535) {
+                    return income*0.15;
+                } else if (income <= 97069) {
+                    return roundToTwo((income-48534)*0.205 + 48535*0.15);
+                } else if (income <= 150473) {
+                    return roundToTwo(
+                        (income-97069)*0.26
+                        +(48534)*0.205
+                        + 48535*0.15);
+                } else if ( income <= 214368){
+                    return roundToTwo(
+                        (income-150473)*0.29
+                        +53404*0.26
+                        +(48534)*0.205
+                        + 48535*0.15
+                    );
+                } else {
+                    return roundToTwo(
+                        (income-214368)*0.33
+                        +63895*0.29
+                        +53404*0.26
+                        +48534*0.205 
+                        +48535*0.15
+                    );
+                }
+            }
+
+        </script>
+
     </div>
 
 
