@@ -43,6 +43,7 @@ test('Does that taxes function work?', () => {
 test('Do the array functions work?', () => {
     expect(functions.arraysAddTo(2)).toBe(2);
     expect(functions.arraysAddTo(3)).toBe(3);
+    expect(functions.arraysAddTo("a")).toBe("Not a valid Number");
     expect(functions.arraysShow([1,2])).toBe("1,2");
     expect(functions.arraysShow([1,2,3])).toBe("1,2,3");
     expect(functions.arraysTotal([1,2,3])).toBe(6);

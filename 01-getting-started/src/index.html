@@ -205,18 +205,52 @@
 
     </div>
 
+<!-- arrays -->
+
     <div class="arrayMain">
         <section class=" arrayFun">
         <h1>Working with Arrays</h1>
-        <input type="text">
+        <input type="text" id="arrayInput">
         <br>
-        <button class="arrayButton">Add</button><button class="arrayButton">Subtract</button><button class="arrayButton">Total</button><button class="arrayButton">Clear</button>
+        <button class="arrayButton" onclick="arraysAddTo(document.getElementById(`arrayInput`).value)">Add</button>
+        <button class="arrayButton" onclick="document.getElementById(`arrayMessage`).innerHTML = arraysShow(arr1)">Show</button>
+        <button class="arrayButton" onclick="document.getElementById(`arrayMessage`).innerHTML = arraysTotal(arr1)">Total</button>
+        <button class="arrayButton" onclick="arraysClear()" >Clear</button>
 
-        <p>Message Area</p>
+        <p id="arrayMessage">Message Area</p>
+        
+        <script type="text/javascript">
+            let arr1=[];
+            arraysAddTo =(x) =>{    
+                if (Number(x).toString() === "NaN"){
+                    document.getElementById(`arrayMessage`).innerHTML = "Not a valid Number";
+                    // return arr1[arr1.length-1];
+                } else {
+                    
+                    arr1.push(Number(x));
+                }
+            }
+            arraysShow =(arr1) =>{ 
+                return arr1.toString();
+            }
+            arraysTotal =(arr1) =>{ 
+                let sum =0;
+                for (let i=0;i<arr1.length;i++){
+                    sum=sum+arr1[i];
+                }
+                return sum;
+            }
+            arraysClear =() =>{ 
+                return arr1=[];
+            }
+        </script>    
 
         </section>
     </div>    
     <br>
+
+
+
 
     <!-- Footer -->
     <footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">

@@ -68,8 +68,12 @@ const functions = {
 
     arraysAddTo :(x) =>{    
         let arr1=[];
-        arr1.push(x);
-        return arr1[arr1.length-1];
+        if (typeof(x) === "number"){
+            arr1.push(x);
+            return arr1[arr1.length-1];
+        } else {
+            return "Not a valid Number";
+        }
     }, 
 
     arraysShow :(arr1) =>{ 
