@@ -64,8 +64,30 @@ const functions = {
             );
         }
 
-        
-    }
+    },
+
+    arraysAddTo :(x) =>{    
+        let arr1=[];
+        arr1.push(x);
+        return arr1[arr1.length-1];
+    }, 
+
+    arraysShow :(arr1) =>{ 
+        return arr1.toString();
+    },
+
+    arraysTotal :(arr1) =>{ 
+        let sum =0;
+        for (let i=0;i<arr1.length;i++){
+            sum=sum+arr1[i];
+        }
+        return sum;
+    },
+
+    arraysClear :(arr1) =>{ 
+        return [];
+    },
+
     
 };
 

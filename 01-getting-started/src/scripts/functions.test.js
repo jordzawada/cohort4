@@ -39,3 +39,14 @@ test('Does that taxes function work?', () => {
     expect(functions.taxes(150000)).toBe(30991.78);
     expect(functions.taxes(250000)).toBe(61402.87);
 });
+
+test('Do the array functions work?', () => {
+    expect(functions.arraysAddTo(2)).toBe(2);
+    expect(functions.arraysAddTo(3)).toBe(3);
+    expect(functions.arraysShow([1,2])).toBe("1,2");
+    expect(functions.arraysShow([1,2,3])).toBe("1,2,3");
+    expect(functions.arraysTotal([1,2,3])).toBe(6);
+    expect(functions.arraysTotal([1,2,3,4])).toBe(10);
+    expect(functions.arraysClear([1,2,3,4])).toStrictEqual([]);
+    expect(functions.arraysClear([1,2,3])).toStrictEqual([]);
+});
