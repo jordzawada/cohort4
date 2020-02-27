@@ -147,18 +147,18 @@ html {
 
 }
 
-.arrayMain{
+.arrayMain, .dictionaryMain{
     display: flex;
     justify-content: center;
 }
 
-.arrayFun {
+.arrayFun, .dictionaryFun {
     color: black;
     border-style: solid;
     padding: 10px;
     margin: 10px;
 }
 
-.arrayButton {
+.arrayButton, .dictionaryButton {
     margin: 20px 3px 20px;
 }
