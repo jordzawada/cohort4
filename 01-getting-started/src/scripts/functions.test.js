@@ -51,3 +51,11 @@ test('Do the array functions work?', () => {
     expect(functions.arraysClear([1,2,3,4])).toStrictEqual([]);
     expect(functions.arraysClear([1,2,3])).toStrictEqual([]);
 });
+
+test('Do the dictionary functions work?', () => {
+    expect(functions.provinceLookup("ab")).toBe("Alberta");
+    expect(functions.provinceLookup("sk")).toBe("Saskatchewan");
+    expect(functions.provinceLookup("nb")).toBe("New Brunswick");
+  
+});
+

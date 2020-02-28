@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
 
     <title>FSD</title>
 </head>
@@ -253,16 +254,21 @@
         <div class="dictionaryMain">
             <section class="dictionaryFun">
             <h1>Working with Dictionaries</h1>
-            <input type="text" id="arrayInput">
+            <input type="text" id="dictionaryInput">
             <br>
-            <button class="dictionaryButton">Lookup</button>
+
+            <script type="text/javascript" src="./scripts/functions.js"></script>  
+
+            <button class="dictionaryButton" 
+            onclick=
+            "document.getElementById('dictionaryMessage').innerHTML 
+            = 
+            functions.provinceLookup(document.getElementById(`dictionaryIput`).value)">Lookup</button>
             
 
             <p id="dictionaryMessage">Message Area</p>
             
-            <script type="text/javascript">
-                
-            </script>    
+              
 
             </section>
         </div>    

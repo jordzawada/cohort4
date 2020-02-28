@@ -92,7 +92,29 @@ const functions = {
         return [];
     },
 
+    provinceLookup :(ca) =>{ 
+        let canadaObj= {
+            ab: "Alberta",
+            sk: "Saskatchewan",
+            bc: "British Colombia",
+            on:"Ontario",
+            qc:"Quebec",
+            mb:"Manitoba",
+            ns:"Nova Scotia",
+            nb:"New Brunswick",
+            nf:"Newfoundland",
+            pei:"Prince Edward Island",
+            nwt:"Northwest Territories",
+            yk:"Yukon Territory",
+            nv: "Nunavut",
+        };
+        return canadaObj[ca];
+    },
     
 };
 
-export default functions;
+
+
+export default functions; 
+
+
