@@ -257,13 +257,33 @@
             <input type="text" id="dictionaryInput">
             <br>
 
-            <script type="text/javascript" src="./scripts/functions.js"></script>  
+            <script type="text/javascript" >
+                provinceLookup =(ca) =>{ 
+                    let canadaObj= {
+                        ab: "Alberta",
+                        sk: "Saskatchewan",
+                        bc: "British Colombia",
+                        on:"Ontario",
+                        qc:"Quebec",
+                        mb:"Manitoba",
+                        ns:"Nova Scotia",
+                        nb:"New Brunswick",
+                        nf:"Newfoundland",
+                        pei:"Prince Edward Island",
+                        nwt:"Northwest Territories",
+                        yk:"Yukon Territory",
+                        nv: "Nunavut",
+                    };
+                    return canadaObj[ca];
+                }
+            </script> 
+            
 
             <button class="dictionaryButton" 
             onclick=
             "document.getElementById('dictionaryMessage').innerHTML 
             = 
-            functions.provinceLookup(document.getElementById(`dictionaryIput`).value)">Lookup</button>
+            provinceLookup(document.getElementById(`dictionaryInput`).value)">Lookup</button>
             
 
             <p id="dictionaryMessage">Message Area</p>
