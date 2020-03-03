@@ -1,6 +1,9 @@
-import fucntions from "./logic.js"
+import functions from "./logic.js"
 
-test('Check 1', () => {
-    expect()).toBe(2); 
+test('Check add to right works', () => {
+    // expect(functions.addCardToRight("rightSide")).toBe(); 
+    
+
+
     
 });

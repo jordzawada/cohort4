@@ -1,0 +1,39 @@
+body {
+    background-color: lightgrey;
+}
+
+.columns{
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+}
+
+.leftSide{
+    background-color: white;
+    text-align: center;
+    overflow: auto;
+    padding: 10px;
+    height: 400px;
+}
+
+#rightSide{
+    background-color: white;
+    text-align: center;
+    height: 400px;
+    
+    margin: 10px 10px 10px 10px;
+}
+
+.button {
+    
+    
+}
+
+.cardDiv{
+    background-color: lightgrey;
+    margin: 20px;
+    
+}
+
+.delBtn {
+    
+}
