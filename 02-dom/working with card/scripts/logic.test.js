@@ -4,6 +4,8 @@ test('Check that you can add a new div', () => {
     document.body.innerHTML = 
     `<div id="test">`+`</div>`;
 
+
+    // maybe use addCardBefore in this test?
     function addDiv(node, text){
         let div = document.createElement(node);
         const textNode= document.createTextNode(text);
@@ -27,8 +29,8 @@ test('Check that you can copy the contents of a specific ID`d div into', () => {
     document.getElementById("test1").innerHTML= "test1";
     
     document.getElementById("test2").innerHTML= "test2";
-    // console.log(document.getElementById("test2").innerHTML); 
+    console.log(document.getElementById("test2").innerHTML); 
 
     document.getElementById("test2").innerHTML =   document.getElementById("test1");
-    console.log(document.getElementById("test1"));  
+    console.log(document.getElementById("test2").innerHTML);  
 });
