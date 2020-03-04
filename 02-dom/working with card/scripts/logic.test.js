@@ -27,7 +27,6 @@ test('Check that you can copy the contents of a specific ID`d div into', () => {
     +`</div>`;
     
     document.getElementById("test1").innerHTML= "test1";
-    
     document.getElementById("test2").innerHTML= "test2";
     console.log(document.getElementById("test2").innerHTML); 
 
