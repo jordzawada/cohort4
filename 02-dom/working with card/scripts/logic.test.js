@@ -1,35 +1,42 @@
 import functions from "./logic.js"
 
-test('Check that you can add a new div', () => {
+
+
+test('Check that you can add a new div before', () => {
     document.body.innerHTML = 
     `<div id="test">`+`</div>`;
+    functions.addCardBefore("test");
+    let x= document.body.children[0];
+    let y= x.children[0];
 
-
-    // maybe use addCardBefore in this test?
-    function addDiv(node, text){
-        let div = document.createElement(node);
-        const textNode= document.createTextNode(text);
-        div.textnode;
-        return div;
-        }
-
-        // const div = document.createElement('div');
-        addDiv("div", 'one');
-        // console.log(document.getElementById("test"));  
-        expect().toBe(); 
+     expect(typeof(y)).toBe("object");     
+        
 });
 
-test('Check that you can copy the contents of a specific ID`d div into', () => {
+test('Check that you can add a new div after', () => {
     document.body.innerHTML = 
-    `<div id="test1">`
-    +`</div>`
-    + `<div id="test2">`
-    +`</div>`;
-    
-    document.getElementById("test1").innerHTML= "test1";
-    document.getElementById("test2").innerHTML= "test2";
-    console.log(document.getElementById("test2").innerHTML); 
+    `<div id="test">`+`</div>`;
+    functions.addCardAfter("test");
+    let x= document.body.children[0];
+    let y= x.children[0];
+    // z is the length of the array made by addcardafter, if greater than 0, the function worked
+    let z= x.children.length
+    console.log(z)
+     expect(typeof(y)).toBe("object"); 
+     expect(z).toBe(1);    
+        
+});
 
-    document.getElementById("test2").innerHTML =   document.getElementById("test1");
-    console.log(document.getElementById("test2").innerHTML);  
+
+test('Check that you can del', () => {
+    document.body.innerHTML = 
+    `<div id="test">`+`</div>`;
+    functions.addCardAfter("test");
+    functions.delCard();
+    let x= document.body.children.length;
+    console.log(x)
+    // z is the length of the array made by delCard, if less than before, the function worked
+    let z=0;
+     expect(z).toBe(0);    
+        
 });

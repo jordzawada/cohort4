@@ -1,27 +1,37 @@
 const functions = {
 
-    addCardBefore :(rightPanel) =>{
-        let rightLength=document.getElementById(rightPanel).children.length;
-        var node = document.createElement("div");
-
-
-        var textnode = document.createTextNode("test");
-        node.appendChild(textnode); 
-
-    
-        let getEle = document.getElementById(rightPanel);
-        if (rightLength === 0) {        
-            getEle.appendChild(node);
-        } else {     
-            getEle.insertBefore(node,getEle.childNodes[0]);
-            
-        }
+    makeNewCard :(x) => {
+        let node= document.getElementById(x);
+        let clone= node.cloneNode(true)
+        return clone;
         
-
-
-
     },
 
+    addCardBefore :(leftSide) =>{    
+        let x = document.getElementById(leftSide).children[1];
+        x=x.getAttribute('id');
+        let node = functions.makeNewCard(x);
+        let getEle = document.getElementById(leftSide);
+        let getPos = getEle.children.length;
+        getEle.insertBefore(node,getEle.childNodes[getPos]);
+    },
+
+    addCardAfter :(leftSide) =>{
+        let x = document.getElementById(leftSide).children[1];
+        x=x.getAttribute('id');
+        let node = functions.makeNewCard(x); 
+        let getEle = document.getElementById(leftSide);
+        let getPos = getEle.children.length;
+        node.children[0].textContent= "Card "+ getPos;
+        
+
+        getEle.appendChild(node);
+    },
+    
+    delCard :(target) =>{
+        target.parentElement.remove();
+        
+    },
 
 }
 

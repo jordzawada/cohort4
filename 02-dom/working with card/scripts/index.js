@@ -1,15 +1,14 @@
 import functions from "./logic.js"
 
-const atr =() =>{
+const CardEvents =() =>{
     if (event.target.id==="addBefore") {
-        functions.addCardBefore ("rightPanel");
+        functions.addCardBefore ("leftSide");
     } 
-    // else if (){
-
-    // } else if (){
-
-    // }
-    
+    else if (event.target.id==="addAfter"){
+        functions.addCardAfter ("leftSide")
+    } else if (event.target.id==="delBtn")
+        functions.delCard (event.target);
 }
 
-leftSide.addEventListener("click",atr)
+
+leftSide.addEventListener("click", CardEvents)
