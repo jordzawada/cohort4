@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+        "testcov": "jest --coverage",
+        "test1": "jest src/03-objects",
+        "test1cov": "jest src/03-objects --coverage",
+        "testfile": "jest src/03-objects/scripts/lfsplay.test.js"
   },
   "author": "",
   "license": "ISC",
