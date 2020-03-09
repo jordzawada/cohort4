@@ -1,5 +1,15 @@
 import functions from "./logic.js"
 
+test('Check that you can clone a div', () => {
+    document.body.innerHTML = 
+    `<div id="cloneTest">`+`</div>`;
+    
+    let clone=functions.makeNewCard("cloneTest");
+    document.body.appendChild(clone)
+    let z=document.body.children.length;
+     expect(z).toBe(2);     
+        
+});
 
 
 test('Check that you can add a new div before', () => {
