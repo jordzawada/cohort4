@@ -1,0 +1,23 @@
+
+.title1 {
+    border: solid black 2px;
+    padding: 10px;
+}
+
+#balance {
+    font-size: larger;
+}
+
+button {
+    height: 40px;
+    font-size: large;
+    box-shadow: black 5px;
+    border-radius: 3px;
+    background-color: cadetblue;
+}
+
+input {
+    height: 33px;
+    font-size: large;
+    
+}
