@@ -5,15 +5,19 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-        "testcov": "jest --coverage",
-        "test1": "jest src/03-objects",
-        "test1cov": "jest src/03-objects --coverage",
-        "testfile": "jest src/03-objects/scripts/lfsplay.test.js"
+    "testcov": "jest --coverage",
+    "test1": "jest src/03-objects",
+    "test1cov": "jest src/03-objects --coverage",
+    "testfile": "jest src/03-objects/scripts/lfsplay.test.js"
   },
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "jest": "^25.1.0"
+  },
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.8.7"
+    "@babel/preset-env": "^7.8.7"
   }
 }

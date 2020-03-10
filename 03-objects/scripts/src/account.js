@@ -1,9 +1,27 @@
-const classes = {
+// const classes = {
 
-    name : () => {
+//     name : () => {
         
         
-    },
+//     },
 
+
+    
+
+// }
+
+class Account {
+    constructor (name, balance){
+        this.name= name;
+        this.balance= balance;
+    }
+    deposit (depositAmount){
+        this.balance= this.balance+ depositAmount;
+    }
+    withdraw (withdrawAmount){
+        this.balance=this.balance-withdrawAmount;
+    }
+    
 }
-export default classes;
+
+export default Account;
