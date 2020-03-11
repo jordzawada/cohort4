@@ -21,3 +21,22 @@ input {
     font-size: large;
     
 }
+
+#accountSections {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 10px;
+
+}
+
+#accountLower {
+    border: solid black 2px;
+    padding: 10px;
+    margin: 10px;
+    flex-flow: wrap;
+    align-content: stretch;
+    border-radius: 10px;
+    background-color: rgb(129, 154, 179);
+    box-shadow: 5px 5px rgb(70, 83, 97);
+}

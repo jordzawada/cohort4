@@ -1,16 +1,6 @@
-// const classes = {
-
-//     name : () => {
-        
-        
-//     },
 
 
-    
-
-// }
-
-class Account {
+export class Account {
     constructor (name, balance){
         this.name= name;
         this.balance= balance;
@@ -23,5 +13,31 @@ class Account {
     }
     
 }
+export class accountController {
+    constructor (){
+        
+    }
+    addAccount (name){
+        let newAccount= new Account(name,0);
+        let x= Object.keys(accountController).length;
+        let newAccountKey= "account"+x+1;
+        this.{newAccountKey} = newAccount;
+    }
+    removeAccount (){
 
-export default Account;
+    }
+    renameAccount () {
+
+    }
+    totalAccounts () {
+
+    }
+    highlightAccountWithHighestValue (){
+
+    }
+    highlightAccountWithLowestValue () {
+
+    }
+}
+
+
