@@ -21,7 +21,7 @@ export class accountController {
         let newAccount= new Account(name,0);
         let x= Object.keys(accountController).length;
         let newAccountKey= "account"+x+1;
-        this.{newAccountKey} = newAccount;
+        this.newAccountKey = newAccount;
     }
     removeAccount (){
 
