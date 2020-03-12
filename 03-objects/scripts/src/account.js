@@ -15,16 +15,15 @@ export class Account {
 }
 export class accountController {
     constructor (){
-        
+        this.accountArr=[];
     }
     addAccount (name){
         let newAccount= new Account(name,0);
-        let x= Object.keys(accountController).length;
-        let newAccountKey= "account"+x+1;
-        this.newAccountKey = newAccount;
+        this.accountArr.push(newAccount);
+        
     }
     removeAccount (){
-
+        this.accountController
     }
     renameAccount () {
 

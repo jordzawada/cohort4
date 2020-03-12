@@ -24,12 +24,12 @@ test('test withdraw method', () => {
 test('test acocunt controller', () => {    
     accountController1.addAccount("sav");
     accountController1.addAccount("car");
-    console.log(accountController1);
+    let x= accountController1.accountArr.length-1;
+    console.log(accountController1);  
+    expect(accountController1.accountArr[0].name).toBe("sav");
+    expect(accountController1.accountArr[x].name).toBe("car");
     
-    expect(accountController1.account.name).toBe("sav");
     
-    
-    // expect(manyAccounts.orderAccounts[0]).toBe();
     
 });
 
