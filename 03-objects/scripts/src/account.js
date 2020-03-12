@@ -22,8 +22,10 @@ export class accountController {
         this.accountArr.push(newAccount);
         
     }
-    removeAccount (){
-        this.accountController
+    removeAccount (name){
+        for (i=0;i<accountArr.length;i++){
+            if 
+        }
     }
     renameAccount () {
 

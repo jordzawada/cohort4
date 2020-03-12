@@ -25,10 +25,14 @@ test('test acocunt controller', () => {
     accountController1.addAccount("sav");
     accountController1.addAccount("car");
     let x= accountController1.accountArr.length-1;
-    console.log(accountController1);  
     expect(accountController1.accountArr[0].name).toBe("sav");
     expect(accountController1.accountArr[x].name).toBe("car");
-    
+    // this order of the following test and the preceding test is important
+    // trying to delete the sav account
+    console.log(accountController1.accountArr);
+
+    // expect(accountController1.accountArr[0].name).toBe("car");
+
     
     
 });
