@@ -8,25 +8,29 @@
 </head>
 <body>
     <h1 class="title1">Account Stuff</h1>
+        <div >
+            <button id="addAccounts">Add Account</button>  
+        </div>
       <div id="accountSections"> 
         <div id="accountLower">
-            <h3>Chequing </h3>
-            <p id="balance">Balance: </p>
-            <button>Deposit</button><input type="text" name="" id="">
+            <h3 class="accountName">Chq </h3>
+            <p class="balance" id="balance">Balance: 0</p>
+            <button>Deposit</button><input type="text" name="deposit" id="">
             <br><br>
-            <button>Withdraw</button><input type="text" name="" id="">
+            <button>Withdraw</button><input type="text" name="" id="withdraw"><br>
+            <br>
+            <div id="rename">
+                <button >Rename</button>
+                <input type="text" name="inputName">
+            </div>
         </div>
-        <!-- <div id="accountLower">
-            <h3>Savings </h3>
-            <p id="balance">Balance: </p>
-            <button>Deposit</button><input type="text" name="" id="">
-            <br><br>
-            <button>Withdraw</button><input type="text" name="" id="">
-        </div> -->
+        <br>
+        
     </div>   
 </body>
 
 <footer>
-    <script type="modules" src="index.js"></script>
+    <script type="module" src="src/index.js"></script>
+    
 </footer>
 </html>

@@ -25,6 +25,7 @@ input {
 #accountSections {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: flex-start;
     padding: 10px;
 
@@ -39,4 +40,9 @@ input {
     border-radius: 10px;
     background-color: rgb(129, 154, 179);
     box-shadow: 5px 5px rgb(70, 83, 97);
+}
+
+#rename{
+    padding: 10px 0px 0px 0px;
+    border-top: 2px solid black;
 }
