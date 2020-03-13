@@ -19,25 +19,66 @@ export class accountController {
     }
     addAccount (name){
         let newAccount= new Account(name,0);
-        this.accountArr.push(newAccount);
-        
+        this.accountArr.push(newAccount); 
     }
     removeAccount (name){
-        for (i=0;i<accountArr.length;i++){
-            if 
+        //iterate through the array that contains all the acocunts, then look at the values of the objects, if the object contains the given name, remove that object.
+        let toBeDeletedPos;
+        for (let i=0;i<this.accountArr.length;i++){
+            // console.log(Object.values(this.accountArr[i]));
+            let val = Object.values(this.accountArr[i]);
+            if (val.includes(name)) {
+                toBeDeletedPos= i;
+                this.accountArr.splice(toBeDeletedPos,1);
+            } else {
+                break;
+            }
         }
     }
-    renameAccount () {
-
+    renameAccount (name,newName) {
+    // iterate through all accounts in the account array for the 'name' account. Give this account the newName.
+        for (let i=0;i<this.accountArr.length;i++){
+            let val = Object.values(this.accountArr[i]);
+            if (val.includes(name)) {
+                this.accountArr[i].name= newName;
+            } else {
+                break;
+            }
+        }
     }
     totalAccounts () {
-
+        // iterate through all acocunts in account array, find balance, sum them all up
+        let sum=0;
+        for (let i=0;i<this.accountArr.length;i++){
+            let bal = this.accountArr[i].balance;
+            // console.log(this.accountArr[i].balance)
+            sum= sum+bal;
+            }
+        return sum;    
     }
     highlightAccountWithHighestValue (){
-
+        let arrayHighest =0;
+        for (let i=0;i<this.accountArr.length;i++){
+            let high = this.accountArr[0].balance;
+            let current = this.accountArr[i].balance;
+            if (high< current) {
+                high =current;
+                arrayHighest = i;
+            }
+        }
+        return arrayHighest;
     }
     highlightAccountWithLowestValue () {
-
+        let arrayLowest =0;
+        for (let i=0;i<this.accountArr.length;i++){
+            let low = this.accountArr[0].balance;
+            let current = this.accountArr[i].balance;
+            if (low> current) {
+                low =current;
+                arrayLowest = i;
+            }
+        }
+        return arrayLowest;
     }
 }
 
