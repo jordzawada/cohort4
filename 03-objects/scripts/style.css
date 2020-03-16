@@ -43,6 +43,10 @@ input {
 }
 
 #rename{
-    padding: 10px 0px 0px 0px;
+    padding: 10px 0px 10px 0px;
     border-top: 2px solid black;
+}
+
+#removeButton {
+    text-align: center;
 }

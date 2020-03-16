@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+    </script>
     <title>My Account</title>
 </head>
 <body>
@@ -13,15 +18,18 @@
         </div>
       <div id="accountSections"> 
         <div id="accountLower">
-            <h3 class="accountName">Chq </h3>
+            <h3 class="accountName">Chq</h3>
             <p class="balance" id="balance">Balance: 0</p>
-            <button>Deposit</button><input type="text" name="deposit" id="">
+            <button id="depositButton">Deposit</button><input type="text" name="deposit" class="deposit">
             <br><br>
-            <button>Withdraw</button><input type="text" name="" id="withdraw"><br>
+            <button id="withdrawButton">Withdraw</button><input type="text" name="" class="withdraw"><br>
             <br>
             <div id="rename">
-                <button >Rename</button>
+                <button id="renameButton">Rename</button>
                 <input type="text" name="inputName">
+            </div>
+            <div id="remove">
+                <button id="removeButton">Remove</button>
             </div>
         </div>
         <br>
