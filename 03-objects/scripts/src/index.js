@@ -87,7 +87,9 @@ const withdraw = () => {
     }
  }
 
-const allFuncs = () => {
+const allFuncs = (e) => {
+    console.log(e);
+    
     if (event.target.id==="renameButton") {
         renameAccount();
     } else if (event.target.id==="removeButton"){
