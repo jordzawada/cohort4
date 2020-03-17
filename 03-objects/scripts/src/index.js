@@ -30,11 +30,10 @@ const remove = () => {
     let targetParent= event.target.parentNode.parentNode;
     let DOMname = targetParent.getElementsByClassName("accountName")[0];    
     let name = targetParent.getElementsByClassName("accountName")[0].textContent;
-    console.log(name);
     let newName = event.target.parentNode.getElementsByTagName("input")[0].value;
     usersAccounts.renameAccount(name,newName);
     DOMname.textContent = newName;
-    console.log(usersAccounts);
+     
  }
  
  const deposit = () => {
@@ -43,23 +42,50 @@ const remove = () => {
     for (let i=0;i<usersAccounts.accountArr.length;i++){
         let val = Object.values(usersAccounts.accountArr[i]);                             
         if (val.includes(targetName)) {
-            console.log(inputDeposit);
             usersAccounts.accountArr[i].deposit(inputDeposit);
-            event.target.parentNode.getElementsByClassName("balance")[0].textContent = Number(usersAccounts.accountArr[i].balance);
+            event.target.parentNode.getElementsByClassName("balance")[0].textContent ="Balance: "+ Number(usersAccounts.accountArr[i].balance);
         } 
     }
-    console.log();
-    
-
  }
 const withdraw = () => {
-     console.log("test withdraw");
-     
+     let targetName= event.target.parentNode.getElementsByClassName("accountName")[0].textContent;
+    let inputWithdraw = event.target.parentNode.getElementsByClassName("withdraw")[0].value;
+    for (let i=0;i<usersAccounts.accountArr.length;i++){
+        let val = Object.values(usersAccounts.accountArr[i]);                             
+        if (val.includes(targetName)) {
+            usersAccounts.accountArr[i].withdraw(inputWithdraw);
+            event.target.parentNode.getElementsByClassName("balance")[0].textContent = "Balance: "+ Number(usersAccounts.accountArr[i].balance);
+        } 
+    }    
  }
 
- const log1 =() => {console.log(event.target)}
+ const total = () => {
+    let totalAll = usersAccounts.totalAccounts();
+    console.log(totalAll);
+    document.getElementById("hTotal").textContent ="$"+ totalAll;
+ }
 
-// document.body.addEventListener('click', log1)
+ const highlightHigh = () => {
+    let highAccount = usersAccounts.highlightAccountWithHighestValue();
+    let name = usersAccounts.accountArr[highAccount].name;
+    let tagList = document.getElementsByTagName("h3");
+    for (let i=0;i<tagList.length; i++){
+        if (tagList[i].textContent===name){
+            tagList[i].id="highest";
+        }
+    }
+    
+ }
+ const highlightLow = () => {
+    let lowAccount = usersAccounts.highlightAccountWithLowestValue();
+    let name = usersAccounts.accountArr[lowAccount].name;
+    let tagList = document.getElementsByTagName("h3");
+    for (let i=0;i<tagList.length; i++){
+        if (tagList[i].textContent===name){
+            tagList[i].id="lowest";
+        }
+    }
+ }
 
 const allFuncs = () => {
     if (event.target.id==="renameButton") {
@@ -72,7 +98,13 @@ const allFuncs = () => {
         deposit();
     } else if(event.target.id==="withdrawButton") {
         withdraw();
-    }
+    } else if(event.target.id==="total") {
+        total();
+    } else if(event.target.id==="high") {
+        highlightHigh();
+    } else if(event.target.id==="low") {
+        highlightLow();
+    } 
 }
 
 document.body.addEventListener('click', allFuncs)

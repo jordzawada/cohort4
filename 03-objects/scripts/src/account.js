@@ -53,7 +53,7 @@ export class accountController {
         for (let i=0;i<this.accountArr.length;i++){
             let bal = this.accountArr[i].balance;
             // console.log(this.accountArr[i].balance)
-            sum= sum+bal;
+            sum= sum+bal;            
             }
         return sum;    
     }

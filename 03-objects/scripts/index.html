@@ -12,17 +12,20 @@
     <title>My Account</title>
 </head>
 <body>
-    <h1 class="title1">Account Stuff</h1>
+      <h1 class="title1">Account Stuff</h1>
         <div >
-            <button id="addAccounts">Add Account</button>  
+            <button id="addAccounts">Add Account</button><button id="high">Highlight Highest Value Account</button><button id="low">Highlight Lowest Value Account</button><br>
+            <button id="total">Total</button>
+            <h2 id="hTotal">$0</h2>
+            
         </div>
       <div id="accountSections"> 
         <div id="accountLower">
             <h3 class="accountName">Chq</h3>
             <p class="balance" id="balance">Balance: 0</p>
-            <button id="depositButton">Deposit</button><input type="text" name="deposit" class="deposit">
+            <button id="depositButton">Deposit</button><input type="text" name="deposit" class="deposit" onfocus="this.value=''">
             <br><br>
-            <button id="withdrawButton">Withdraw</button><input type="text" name="" class="withdraw"><br>
+            <button id="withdrawButton">Withdraw</button><input type="text" name="" class="withdraw" onfocus="this.value=''"><br>
             <br>
             <div id="rename">
                 <button id="renameButton">Rename</button>

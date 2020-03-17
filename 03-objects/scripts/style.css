@@ -50,3 +50,11 @@ input {
 #removeButton {
     text-align: center;
 }
+
+#highest {
+    background-color: blue;
+}
+
+#lowest {
+    background-color: chartreuse;
+}
