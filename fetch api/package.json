@@ -6,8 +6,7 @@
   "scripts": {
     "test": "jest",
     "testcov": "jest --coverage",
-    "test1": "jest src/fetch api",
-    
+    "test1": "jest src/fetch api"
   },
   "author": "",
   "license": "ISC",
