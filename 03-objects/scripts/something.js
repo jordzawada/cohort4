@@ -52,3 +52,6 @@ const functions = {
     },
 
 }
+
+// export default functions
+console.log(showDelaySolution());
