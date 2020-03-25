@@ -58,7 +58,32 @@ export class Community {
     constructor(data){
         this.data=data;
     }
-    
+    getMostNorthern(){
+        let mostNorth=0;
+        let mostNorthName='';      
+        for (let i=0;i<this.data.length;i++){
+            if (this.data[i].lat>mostNorth){
+                mostNorth=this.data[i].lat;
+                mostNorthName=this.data[i].city;
+            }
+        }
+        return mostNorthName;    
+    }
+    getMostSouthern(){
+        let mostSouth=90;
+        let mostSouthName='';      
+        for (let i=0;i<this.data.length;i++){
+            if (this.data[i].lat<mostSouth){
+                mostSouth=this.data[i].lat;
+                mostSouthName=this.data[i].city;
+            }
+        }
+        return mostSouthName;    
+    }
+    getPopulation(){
+        
+    }
+
 }
 
 export default functions;

@@ -35,4 +35,9 @@ test('test the community controller', async () => {
    const Community1 = new Community(data);
    expect(Community1.data[0].city).toBe('Calgary');
    expect(Community1.data[1].city).toBe('Edmonton');
-    });
+   // console.log(Community1);
+   // test most northern
+   expect(Community1.getMostNorthern()).toBe('Edmonton');
+// most southern is the same as most northern but with a negative
+expect(Community1.getMostSouthern()).toBe('Calgary');
+});
