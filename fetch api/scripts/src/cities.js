@@ -1,4 +1,19 @@
 
+const fetch = require("node-fetch");
+
+const functions ={
+    async getCities(url){
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            return data;
+        } catch (error){
+            console.error('Error',error);
+            throw (error);
+        }
+    }, 
+
+}
 
 export class City {
     constructor(Name,Latitude,Longitude,Population) {
@@ -30,7 +45,20 @@ export class City {
             return "Hamlet";
         }
     }
-
-
+    whichSphere(){
+        if (this.Latitude>=0){
+            return "City is in Northern Hemisphere";
+        } else {
+            return "City is in Southern Hemisphere";
+        }
+    }
 }
 
+export class Community {
+    constructor(data){
+        this.data=data;
+    }
+    
+}
+
+export default functions;
