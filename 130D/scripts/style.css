@@ -1,60 +1,54 @@
-
-.title1 {
-    border: solid black 2px;
-    padding: 10px;
+body {
+    background-color: black;
+    color: lightgrey;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 15px;
 }
 
-#balance {
-    font-size: larger;
-}
-
-button {
-    height: 40px;
-    font-size: large;
-    box-shadow: black 5px;
-    border-radius: 3px;
-    background-color: cadetblue;
-}
-
-input {
-    height: 33px;
-    font-size: large;
+h1{
+    text-align: center;
     
 }
 
-#accountSections {
+.cardDiv {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    padding: 10px;
-
 }
 
-#accountLower {
-    border: solid black 2px;
-    padding: 10px;
+.cardUpperDiv{
+    height: 100px;
+    text-align: left;
+}
+
+.cardLowerDiv{
+    text-align: left;
+}
+
+.testCard {
+    height: 300px;
+    width: 400px;
     margin: 10px;
-    flex-flow: wrap;
-    align-content: stretch;
-    border-radius: 10px;
-    background-color: rgb(129, 154, 179);
-    box-shadow: 5px 5px rgb(70, 83, 97);
-}
-
-#rename{
-    padding: 10px 0px 10px 0px;
-    border-top: 2px solid black;
-}
-
-#removeButton {
+    padding: 10px;
+    color: rgb(141, 39, 214);
+    background-image: linear-gradient(rgb(29, 29, 29), rgb(92, 92, 92));
+    border-radius: 5px;
     text-align: center;
+    transition: transform .5s;
 }
 
-#highest {
-    background-color: blue;
+.testCard:hover{
+    transform: scale(1.1);
 }
 
-#lowest {
-    background-color: chartreuse;
+.w3-button {
+    background-color: darkgray;
+    background: 20%;
+    border: 0px;
+}
+
+.w3-black {
+    border-bottom: solid rgb(34, 34, 34);
+    margin-left: 5px;
+    margin-right: 5px;
+
 }

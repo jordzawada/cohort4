@@ -3,12 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Document</title>
 </head>
+
 <body>
-    <p>test</p>
+<h1 id="title">Here is a Title</h1>
+<div class='cardDiv'>
+    <div class= "testCard">Here is some card text
+        <div class="cardUpperDiv">
+            <p>some upper text</p>
+        </div>
+        
+        <div class="cardLowerDiv">
+            <div class="w3-bar w3-black">
+                <button class="w3-bar-item w3-button" onclick="openCity('info')">Info</button>
+                <button class="w3-bar-item w3-button" onclick="openCity('settings')">Settings</button>
+              </div>
+              <div class="cardTab"  id="info">
+                <p>info tab</p>
+              </div>
+              <div class="cardTab"  id="settings" style="display:none">
+                <p>settings tab</p>
+              </div>
+        </div>
+    </div>
+</div>
+   
+    
 </body>
 <footer>
     <script type ="module" src="src/index.js"></script>
+
+    <script>
+        function openCity(cityName) {
+            var i;
+            var x = document.getElementsByClassName('cardTab');
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            document.getElementById(cityName).style.display = "block";
+        }
+    </script>
 </footer>
 </html>
