@@ -1,5 +1,5 @@
 
-const fetch = require("node-fetch");
+// const fetch = require("node-fetch");
 
 const functions ={
     async getCities(url){
@@ -54,8 +54,9 @@ export class City {
     }
 }
 
+
 export class Community {
-    constructor(data){
+    constructor(data=[]){
         this.data=data;
     }
     getMostNorthern(){

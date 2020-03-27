@@ -1,6 +1,6 @@
 import functions from './cities.js';
 import {City,Community} from './cities.js';
-
+const fetch = require("node-fetch");
 test('test the basics', async () => {
    // test async and server ability to hand out data
    let url= 'http://127.0.0.1:5000/all';
