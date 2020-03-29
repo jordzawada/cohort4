@@ -1,6 +1,6 @@
 
 // const fetch = require("node-fetch");
-
+let counter1=1;
 const functions ={
     async getCities(url){
         try {
@@ -12,6 +12,25 @@ const functions ={
             throw (error);
         }
     }, 
+    async postToServer (url='http://127.0.0.1:5000/add',data ={}){
+        console.log("saved");
+        console.log(data);
+        
+        const response = await fetch(url, {
+            method: 'POST',  
+            mode: 'cors',       
+            cache: 'no-cache',  
+            redentials: 'same-origin', 
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            redirect: 'follow',         
+            referrer: 'no-referrer',    
+            body: JSON.stringify(data),
+        });
+        return await response.json();   // parses JSON response into native JavaScript objects
+    },
+
 
 }
 
@@ -21,7 +40,9 @@ export class City {
         this.Latitude = Latitude;
         this.Longitude = Longitude;
         this.Population = Population;
-    }
+        this.key=counter1; 
+        counter1=counter1+1;    
+    } 
     show (){
         let str= this.Name +", "+this.Latitude+", "+this.Longitude+", "+this.Population;
         console.log(str);
