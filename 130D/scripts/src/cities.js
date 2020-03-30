@@ -14,21 +14,26 @@ const functions ={
     }, 
     async postToServer (url='http://127.0.0.1:5000/add',data ={}){
         console.log("saved");
-        console.log(data);
-        
-        const response = await fetch(url, {
-            method: 'POST',  
-            mode: 'cors',       
-            cache: 'no-cache',  
-            redentials: 'same-origin', 
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            redirect: 'follow',         
-            referrer: 'no-referrer',    
-            body: JSON.stringify(data),
-        });
-        return await response.json();   // parses JSON response into native JavaScript objects
+    let size = Object.keys(data).length;
+    for (let i=1;i<=size;i++) {
+            const response = await fetch(url, {
+                method: 'POST',  
+                mode: 'cors',       
+                cache: 'no-cache',  
+                redentials: 'same-origin', 
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                redirect: 'follow',         
+                referrer: 'no-referrer',    
+                body: JSON.stringify(data[i-1]),
+            });
+            
+            await response.json();   // parses JSON response into native JavaScript objects
+        }
+    },
+    createCard(){
+
     },
 
 
@@ -117,6 +122,10 @@ export class Community {
         //find the data arrays position of the clicked on card, cards should be set up in order. Clicking delete on a card will delete it in the data array, and thus in the broswer.
         this.data.splice(selected,1)
     }
+    objectification(){
+        this.data= Object.assign({},this.data)
+    }
+
 
 }
 

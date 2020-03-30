@@ -3,12 +3,16 @@ import {City,Community} from './cities.js'
 
 const url ='http://127.0.0.1:5000/all';
 const urlAdd='http://127.0.0.1:5000/add'
-let data = functions.getCities(url)
+let data = functions.getCities(url);
 const Community1= new Community();
+
+
+
 Community1.createCity('test1');
 Community1.createCity('test2');
-console.log(JSON.stringify(Community1.data));
-
+Community1.objectification();
+// console.log(Community1.data[0].hasOwnProperty("key"));
+// console.log(JSON.stringify(Community1.data));
 
 async function testFunc1() {
     const e= event.target;
@@ -18,7 +22,7 @@ async function testFunc1() {
     // console.log(await Community2.data[1]);
     // await Community1.data[0].show();
 }
-let data1={"key":"test"}
+
 const funcs =()=>{
     if (event.target==="body"){
         testFunc1();
