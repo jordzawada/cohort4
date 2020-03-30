@@ -32,8 +32,50 @@ const functions ={
             await response.json();   // parses JSON response into native JavaScript objects
         }
     },
-    createCard(){
+    createCard(cardDiv){
+        let targetDiv= document.getElementById(cardDiv)
+        let node = document.createElement('div');
+        node.classList.add("testCard");
+        let newCard = document.createElement('div');
+        newCard.classList.add("cardDiv");
+        newCard.textContent="Here is some card text";
+        let newBr =document.createElement('br');
+        let newUpper=document.createElement('div');
+        newUpper.classList.add("cardUpperDiv");
+        newUpper.innerText="some upper text";
+        let newLower= document.createElement('div');
+        newLower.classList.add("cardLowerDiv");
+        let newButtonDiv = document.createElement('div');
+        let newInfo= document.createElement('div');
+        let newSettings= document.createElement('div');
+        newButtonDiv.classList.add("w3-bar","w3-black");
+        newInfo.classList.add("cardTab");
+        newInfo.id="info";
+        newInfo.textContent="info tab";
+        newSettings.classList.add("cardTab");
+        newSettings.id="settings";
+        newSettings.textContent="settings tab"
+        newSettings.style.display="none";
+        let newInfoButton= document.createElement('button');
+        newInfoButton.classList.add("w3-bar-item","w3-button");
+        newInfoButton.textContent="Info";
+        newInfoButton.setAttribute('onclick',"openCity('info')");
+        let newSettingsButton= document.createElement('button');
+        newSettingsButton.classList.add("w3-bar-item","w3-button");
+        newSettingsButton.textContent="Settings";
+        newSettingsButton.setAttribute('onclick',"openCity('settings')");
 
+        newButtonDiv.appendChild(newInfoButton);
+        newButtonDiv.appendChild(newSettingsButton);
+        newLower.appendChild(newButtonDiv);
+        newLower.appendChild(newInfo);
+        newLower.appendChild(newSettings);
+        newCard.appendChild(newBr);
+        newCard.appendChild(newUpper);
+        newCard.appendChild(newLower);
+        
+        node.appendChild(newCard);
+        targetDiv.appendChild(node);
     },
 
 

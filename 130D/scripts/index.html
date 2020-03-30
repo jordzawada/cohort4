@@ -10,9 +10,9 @@
 <body>
 <h1 id="title">Here is a Title</h1>
 <button id="save">Save</button>
-<div class='cardDiv'>
-    <div class= "testCard">Here is some card text
-        <div class="cardUpperDiv">
+<button id="add">Add a new City</button>
+<div id="cardDiv" class='cardDiv'>
+    <div class= "testCard">Here is some card text        <div class="cardUpperDiv">
             <p>some upper text</p>
         </div>
         
@@ -35,16 +35,15 @@
 </body>
 <footer>
     <script type ="module" src="src/index.js"></script>
-
-    <script>
-        function openCity(cityName) {
-            var i;
-            var x = document.getElementsByClassName('cardTab');
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
-            }
-            document.getElementById(cityName).style.display = "block";
+<script type ="text/javascript">
+    function openCity(cityName) {
+        var i;
+        var x = document.getElementsByClassName('cardTab');
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
         }
-    </script>
+        document.getElementById(cityName).style.display = "block";
+    }
+</script>
 </footer>
 </html>

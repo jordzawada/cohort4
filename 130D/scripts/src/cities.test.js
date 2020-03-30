@@ -72,3 +72,15 @@ test('test the post', async () => {
 
         
 });
+
+test('test the dom functions', async () => {
+   //make a new div
+   document.body.innerHTML = 
+   `<div id="cloneTest">`+`</div>`;
+   functions.createCard("cloneTest");
+   functions.createCard("cloneTest");
+   let z=document.getElementById('cloneTest').children.length;
+   expect(z).toBe(2); 
+       
+});
+
