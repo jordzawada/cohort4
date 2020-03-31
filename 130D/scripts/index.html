@@ -12,7 +12,7 @@
 <button id="save">Save</button>
 <button id="add">Add a new City</button>
 <div id="cardDiv" class='cardDiv'>
-    <div class= "testCard">Here is some card text        <div class="cardUpperDiv">
+    <!-- <div class= "testCard">Here is some card text        <div class="cardUpperDiv">
             <p>some upper text</p>
         </div>
         
@@ -21,14 +21,14 @@
                 <button class="w3-bar-item w3-button" onclick="openCity('info')">Info</button>
                 <button class="w3-bar-item w3-button" onclick="openCity('settings')">Settings</button>
               </div>
-              <div class="cardTab"  id="info">
+              <div class="cardTabinfo"  id="info">
                 <p>info tab</p>
               </div>
-              <div class="cardTab"  id="settings" style="display:none">
+              <div class="cardTabsettings"  id="settings" style="display:none">
                 <p>settings tab</p>
               </div>
         </div>
-    </div>
+    </div> -->
 </div>
    
     
@@ -37,12 +37,18 @@
     <script type ="module" src="src/index.js"></script>
 <script type ="text/javascript">
     function openCity(cityName) {
-        var i;
-        var x = document.getElementsByClassName('cardTab');
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
+        var x = document.getElementsByClassName('cardTab'+cityName);
+        if (cityName==="info"){
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "block";
+                document.getElementsByClassName('cardTabsettings')[i].style.display="none";
+            }
+        } else {
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "block";
+                document.getElementsByClassName('cardTabinfo')[i].style.display="none";
+            }
         }
-        document.getElementById(cityName).style.display = "block";
     }
 </script>
 </footer>

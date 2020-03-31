@@ -33,7 +33,7 @@ test('test the community controller', async () => {
    let url= 'http://127.0.0.1:5000/all';
    let data = await functions.getCities(url);
    const Community1 = new Community(data);
-   // expect(Community1.data[0].city).toBe('Calgary');
+   expect(Community1.data[0].city).toBe('Calgary');
    // expect(Community1.data[1].city).toBe('Edmonton');
    // console.log(Community1);
    // test most northern
