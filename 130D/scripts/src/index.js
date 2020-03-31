@@ -22,8 +22,8 @@ async function testFunc1() {
 async function funcs(){
         testFunc1();
      if (event.target.id==="save") {
-         console.log(await Community1.data);
-        await functions.postToServer(urlAdd, Community1);
+         console.log(await Community1);
+        await functions.postToServer(urlAdd, Community1.data);
     } else if (event.target.id==="add"){
         functions.createCard('cardDiv');
     } 

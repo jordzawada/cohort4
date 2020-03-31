@@ -22,12 +22,11 @@ const functions ={
         return Community1;
     },
 
-    async postToServer (url='http://127.0.0.1:5000/add',data ={}){
+    async postToServer (url='http://127.0.0.1:5000/add',data){
         // console.log("saved");
         console.log(await data);    
         let size = Object.keys(data).length;
         console.log(size);
-        
         for (let i=1;i<=size;i++) {
             const response = await fetch(url, {
                 method: 'POST',  
