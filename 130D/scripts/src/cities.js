@@ -16,17 +16,15 @@ const functions ={
         let data = await functions.getCities(url);
         const Community1= new Community(data);
         Community1.createCity('test1');
-        Community1.createCity('test2');
+        // Community1.createCity('test2');
         Community1.objectification();
-        console.log(Community1.data);
-        return Community1;
+        // console.log(Community1.data);
+        return Community1.data;
     },
 
     async postToServer (url='http://127.0.0.1:5000/add',data){
-        // console.log("saved");
-        console.log(await data);    
-        let size = Object.keys(data).length;
-        console.log(size);
+        // console.log("saved");   
+        let size = Object.keys(await data).length;
         for (let i=1;i<=size;i++) {
             const response = await fetch(url, {
                 method: 'POST',  
@@ -40,7 +38,6 @@ const functions ={
                 referrer: 'no-referrer',    
                 body: JSON.stringify(await data[i-1]),
             });
-            
             await response.json();   // parses JSON response into native JavaScript objects
         }
     },
@@ -93,8 +90,14 @@ const functions ={
         // node.appendChild(newCard);
         targetDiv.appendChild(node);
     },
-    updateCards(controller){
-        console.log(Object.keys(controller));
+    async updateCards(data){
+        console.log(await data);
+        let size = Object.keys(await data).length;
+        console.log(size);
+        // let target = document.getElementById('cardDiv');
+        for (let i=1;i<=size ;i++){
+            functions.createCard("cardDiv")
+        }
         
         
         //this function will auto run and fill in data into the cards based on the controller object
