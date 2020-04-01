@@ -8,9 +8,29 @@
 </head>
 
 <body>
-<h1 id="title">Here is a Title</h1>
+<h1 id="title">City Thing</h1>
+<div class="form-popup" id="myForm">
+    <div class="form-container">
+      <h1>City Info</h1>
+  
+      <label for="name"><b>Name</b></label>
+      <input type="text" placeholder="Enter City Name" name="name" required>
+
+      <label for="lat"><b>Latitude</b></label>
+      <input type="text" placeholder="Enter Latitude" name="lat" default=0>
+
+      <label for="long"><b>Longitude</b></label>
+      <input type="text" placeholder="Enter Longitude" name="long" default=0>
+
+      <label for="pop"><b>Population</b></label>
+      <input type="text" placeholder="Enter Population" name="pop" default=0>
+
+      <button id="add" class="btn">Add a new City</button>
+      <button type="submit" class="btn cancel" onclick="closeForm()">Close</button>
+      
+    </div>
+  </div>
 <button id="save">Save</button>
-<button id="add">Add a new City</button>
 <div id="cardDiv" class='cardDiv'>
     <!-- <div class= "testCard">Here is some card text        <div class="cardUpperDiv">
             <p>some upper text</p>
@@ -30,7 +50,7 @@
         </div>
     </div> -->
 </div>
-   
+<button class="open-button" onclick="openForm()">Add City</button>  
     
 </body>
 <footer>
@@ -50,6 +70,13 @@
             }
         }
     }
+    function openForm() {
+         document.getElementById("myForm").style.display = "block";
+            }
+
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+            }
 </script>
 </footer>
 </html>

@@ -13,13 +13,18 @@ const functions ={
         }
     }, 
     async onLoad(url){
-        let data = await functions.getCities(url);
-        const Community1= new Community(data);
-        Community1.createCity('test1');
-        // Community1.createCity('test2');
-        Community1.objectification();
-        // console.log(Community1.data);
-        return Community1.data;
+        try{
+            let data = await functions.getCities(url);
+            const Community1= new Community(data);
+            Community1.createCity('test1');
+            // Community1.createCity('test2');
+            Community1.objectification();
+            // console.log(Community1.data);
+            return Community1.data;
+        } catch (error){
+            console.error('Error',error);
+            throw (error);
+        }
     },
 
     async postToServer (url='http://127.0.0.1:5000/add',data){
@@ -41,13 +46,13 @@ const functions ={
             await response.json();   // parses JSON response into native JavaScript objects
         }
     },
-    createCard(cardDiv){
+    createCard(cardDiv,name,lat,long,pop){
         let targetDiv= document.getElementById(cardDiv)
         let node = document.createElement('div');
         node.classList.add("testCard");
         // let newCard = document.createElement('div');
         // newCard.classList.add("cardDiv");
-        node.textContent="Here is some card text";
+        node.textContent=`${name}`;
         let newUpper=document.createElement('div');
         newUpper.classList.add("cardUpperDiv");
         let upperText =document.createElement('p');
@@ -63,7 +68,7 @@ const functions ={
         newButtonDiv.classList.add("w3-bar","w3-black");
         newInfo.classList.add("cardTabinfo");
         newInfo.id="info";
-        lowerTextInfo.textContent="info tab";
+        lowerTextInfo.textContent=`Lat: ${lat}, Long: ${long}, Population: ${pop}`;
         newInfo.appendChild(lowerTextInfo);
         newSettings.classList.add("cardTabsettings");
         newSettings.id="settings";
@@ -91,22 +96,15 @@ const functions ={
         targetDiv.appendChild(node);
     },
     async updateCards(data){
-        console.log(await data);
-        let size = Object.keys(await data).length;
-        console.log(size);
-        // let target = document.getElementById('cardDiv');
-        for (let i=1;i<=size ;i++){
-            functions.createCard("cardDiv")
-        }
-        
-        
         //this function will auto run and fill in data into the cards based on the controller object
-        // if (){
-
-        // }
+        let size = Object.keys(await data).length;
+        
+        for (let i=0;i<size ;i++){
+            let currentData = await data;
+            let Name = await currentData[i].Name;
+            functions.createCard("cardDiv", Name, currentData[i].Latitude,currentData[i].Longitude,currentData[i].Population);
+        } 
     }
-
-
 }
 
 export class City {
