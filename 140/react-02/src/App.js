@@ -2,12 +2,14 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Bear from './components/Bear.js';
+import TTT from './components/TTT.js';
 
 function App() {
   return (
     <div>
       <div class="bear">
-      <Bear /><Bear /><Bear /><Bear /><Bear />
+      <Bear /><Bear /><Bear /><Bear />
+      <TTT />
       </div>
       <div className="App">
         

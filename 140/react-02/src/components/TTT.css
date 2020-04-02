@@ -1,0 +1,27 @@
+.TTT-logo {
+    height: 40vmin;
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .TTT-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+
+@keyframes TTT-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .TTT:hover {
+   filter: invert(0.5);
+  }
+
+  .TTT:active {
+      filter: sepia(0.9);
+  }
