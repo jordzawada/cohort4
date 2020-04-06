@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #282c34;
 }
 
 code {
@@ -76,7 +77,7 @@ ol, ul {
 }
 
 .tab-list-active {
-  background-color: white;
+  border-color: #282c34;
   border-bottom: 1px solid #ccc;
 
 }

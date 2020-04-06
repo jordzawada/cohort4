@@ -7,16 +7,19 @@ import Home from './components/Home';
 import Tabs from './components/Tabs';
 import Game from './components/Game';
 
+let TTTComp = <TTT />;
+let BearComp = <Bear />;
 function App() {
+  
   return (
     <div> 
       <div>
         <h1>React</h1>
           <Tabs>
-          <div label=<Bear />>
+          <div label={BearComp}>
             <Home />
             </div>
-            <div label=<TTT />>
+            <div label={TTTComp}>
               <Game />
             </div>
             <div label=<Bear />>
