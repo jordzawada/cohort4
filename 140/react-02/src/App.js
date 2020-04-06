@@ -3,33 +3,33 @@ import logo from './logo.svg';
 import './App.css';
 import Bear from './components/Bear.js';
 import TTT from './components/TTT.js';
+import Home from './components/Home';
+import Tabs from './components/Tabs';
+import Game from './components/Game';
 
 function App() {
   return (
-    <div>
-      <div class="bear">
-      <Bear /><Bear /><Bear /><Bear />
-      <TTT />
+    <div> 
+      <div>
+        <h1>React</h1>
+          <Tabs>
+          <div label=<Bear />>
+            <Home />
+            </div>
+            <div label=<TTT />>
+              <Game />
+            </div>
+            <div label=<Bear />>
+              After 'while, <em>Crocodile</em>!
+            </div>
+            <div label=<Bear />>
+              Nothing to see here, this tab is <em>extinct</em>!
+            </div>
+          </Tabs>
       </div>
-      <div className="App">
-        
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-      </div>
-  );
+      </div>  
+    );
 }
+
 
 export default App;

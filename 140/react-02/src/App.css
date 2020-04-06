@@ -37,8 +37,4 @@
   }
 }
 
-.bear{
-  display: flex;
-  flex-wrap: wrap;
-  flex: 1fr 1fr 1fr 1fr 1fr;
-}
+
