@@ -1,200 +1,235 @@
-
 // const fetch = require("node-fetch");
-let counter1=1;
-const functions ={  
-    async getCities(url){
+let counter1 = 1;
+const functions = {
+    async getCities(url) {
         try {
-            const response = await fetch(url);
-            const data = await response.json();
-            return await data;
-        } catch (error){
-            console.error('Error',error);
-            throw (error);
+          const response = await fetch(url);
+          const Community1 = await response.json();
+          // console.log("log from page load get cities, json from community class");
+        //   console.log(Community1);
+          return await Community1;
+        } catch (error) {
+          console.error("Error", error);
+          throw error;
         }
-    }, 
-    async onLoad(url){
-        try{
-            let data = await functions.getCities(url);
-            const Community1= new Community(data);
-            Community1.createCity('test1');
-            // Community1.createCity('test2');
-            Community1.objectification();
-            // console.log(Community1.data);
-            return Community1.data;
-        } catch (error){
-            console.error('Error',error);
-            throw (error);
-        }
-    },
-
-    async postToServer (url='http://127.0.0.1:5000/add',data){
-        // console.log("saved");   
-        let size = Object.keys(await data).length;
-        for (let i=1;i<=size;i++) {
-            const response = await fetch(url, {
-                method: 'POST',  
-                mode: 'cors',       
-                cache: 'no-cache',  
-                redentials: 'same-origin', 
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                redirect: 'follow',         
-                referrer: 'no-referrer',    
-                body: JSON.stringify(await data[i-1]),
-            });
-            await response.json();   // parses JSON response into native JavaScript objects
-        }
-    },
-    createCard(cardDiv,name,lat,long,pop){
-        let targetDiv= document.getElementById(cardDiv)
-        let node = document.createElement('div');
-        node.classList.add("testCard");
-        // let newCard = document.createElement('div');
-        // newCard.classList.add("cardDiv");
-        node.textContent=`${name}`;
-        let newUpper=document.createElement('div');
-        newUpper.classList.add("cardUpperDiv");
-        let upperText =document.createElement('p');
-        upperText.textContent="some upper text";
-        newUpper.appendChild(upperText);
-        let newLower= document.createElement('div');
-        newLower.classList.add("cardLowerDiv");
-        let lowerTextInfo =document.createElement('p');
-        let lowerText =document.createElement('p');
-        let newButtonDiv = document.createElement('div');
-        let newInfo= document.createElement('div');
-        let newSettings= document.createElement('div');
-        newButtonDiv.classList.add("w3-bar","w3-black");
-        newInfo.classList.add("cardTabinfo");
-        newInfo.id="info";
-        lowerTextInfo.textContent=`Lat: ${lat}, Long: ${long}, Population: ${pop}`;
-        newInfo.appendChild(lowerTextInfo);
-        newSettings.classList.add("cardTabsettings");
-        newSettings.id="settings";
-        lowerText.textContent="settings tab";
-        newSettings.appendChild(lowerText);
-        newSettings.style.display="none";
-        let newInfoButton= document.createElement('button');
-        newInfoButton.classList.add("w3-bar-item","w3-button");
-        newInfoButton.textContent="Info";
-        newInfoButton.setAttribute('onclick',"openCity('info')");
-        let newSettingsButton= document.createElement('button');
-        newSettingsButton.classList.add("w3-bar-item","w3-button");
-        newSettingsButton.textContent="Settings";
-        newSettingsButton.setAttribute('onclick',"openCity('settings')");
-
-        newButtonDiv.appendChild(newInfoButton);
-        newButtonDiv.appendChild(newSettingsButton);
-        newLower.appendChild(newButtonDiv);
-        newLower.appendChild(newInfo);
-        newLower.appendChild(newSettings);
-        node.appendChild(newUpper);
-        node.appendChild(newLower);
-        
-        // node.appendChild(newCard);
-        targetDiv.appendChild(node);
-    },
-    async updateCards(data){
-        //this function will auto run and fill in data into the cards based on the controller object
-        let size = Object.keys(await data).length;
-        
-        for (let i=0;i<size ;i++){
-            let currentData = await data;
-            let Name = await currentData[i].Name;
-            functions.createCard("cardDiv", Name, currentData[i].Latitude,currentData[i].Longitude,currentData[i].Population);
-        } 
+      },
+   async onLoad(url) {
+    try {
+      let data = await functions.getCities(url);
+    //   console.log(data);
+      // console.log("make a new community from server data");
+      const Community1 = new Community(data);
+      functions.getCities(url);
+      // need to make the data from server a City class
+      let size = ( Community1.data).length;
+      for (let i = 0; i < size; i++) {
+        Community1.createCity(
+          data[i].Name,
+          data[i].Latitude,
+          data[i].Longitude,
+          data[i].Population
+        );
+        let currentData =  data;
+        let Name = currentData[i].Name;
+        functions.createCard(
+          "cardDiv",
+          Name,
+          currentData[i].Latitude,
+          currentData[i].Longitude,
+          currentData[i].Population
+        );
+      }
+      functions.updateUI(Community1);
+      // Community1.objectification();
+      console.log(Community1);
+      return Community1;
+    } catch (error) {
+      console.error("Error", error);
+      throw error;
     }
-}
+  },
+
+  async postData(url = "http://127.0.0.1:5000/add", data = {}) {
+    // console.log("saved");
+    const response = await fetch(url, {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      redentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      redirect: "follow",
+      referrer: "no-referrer",
+      body: JSON.stringify(data),
+    });
+    const json = await response.json(); // parses JSON response into native JavaScript objects
+    json.status = response.status;
+    json.statusText = response.statusText;
+    // console.log(json, typeof(json));
+    return json;
+  },
+  createCard(cardDiv, name, lat, long, pop) {
+    let targetDiv = document.getElementById(cardDiv);
+    let node = document.createElement("div");
+    node.classList.add("testCard");
+    // let newCard = document.createElement('div');
+    // newCard.classList.add("cardDiv");
+    node.textContent = `${name}`;
+    let newUpper = document.createElement("div");
+    newUpper.classList.add("cardUpperDiv");
+    let upperText = document.createElement("p");
+    upperText.textContent = "some upper text";
+    newUpper.appendChild(upperText);
+    let newLower = document.createElement("div");
+    newLower.classList.add("cardLowerDiv");
+    let lowerTextInfo = document.createElement("p");
+    let lowerText = document.createElement("p");
+    let newButtonDiv = document.createElement("div");
+    let newInfo = document.createElement("div");
+    let newSettings = document.createElement("div");
+    newButtonDiv.classList.add("w3-bar", "w3-black");
+    newInfo.classList.add("cardTabinfo");
+    newInfo.id = "info";
+    lowerTextInfo.textContent = `Lat: ${lat}, Long: ${long}, Population: ${pop}`;
+    newInfo.appendChild(lowerTextInfo);
+    newSettings.classList.add("cardTabsettings");
+    newSettings.id = "settings";
+    lowerText.textContent = "settings tab";
+    newSettings.appendChild(lowerText);
+    newSettings.style.display = "none";
+    let newInfoButton = document.createElement("button");
+    newInfoButton.classList.add("w3-bar-item", "w3-button");
+    newInfoButton.textContent = "Info";
+    newInfoButton.setAttribute("onclick", "openCity('info')");
+    let newSettingsButton = document.createElement("button");
+    newSettingsButton.classList.add("w3-bar-item", "w3-button");
+    newSettingsButton.textContent = "Settings";
+    newSettingsButton.setAttribute("onclick", "openCity('settings')");
+
+    newButtonDiv.appendChild(newInfoButton);
+    newButtonDiv.appendChild(newSettingsButton);
+    newLower.appendChild(newButtonDiv);
+    newLower.appendChild(newInfo);
+    newLower.appendChild(newSettings);
+    node.appendChild(newUpper);
+    node.appendChild(newLower);
+
+    // node.appendChild(newCard);
+    targetDiv.appendChild(node);
+  },
+  // async updateCards(data){
+  //     //this function will auto run and fill in data into the cards based on the controller object
+  //     let size = Object.keys(await data).length;
+  //     console.log("update cards from server, the data comes in as:");
+  //     console.log(await data);
+  //     console.log("the type of this Community is:");
+  //     console.log( typeof(data));
+  //     console.log("the keys from this Community are:");
+  //     console.log(Object.keys(await data));
+  //     console.log("oh look, data is a key");
+  //     console.log("log Community.data");
+  //     console.log(await data.data);
+  //     console.log(":(");
+
+  // },
+  updateUI(community) {
+    topBar.textContent = `Most Northern: ${community.getMostNorthern()}, Most Southern: ${community.getMostSouthern()}, Total Population: ${community.getPopulation()} `;
+  },
+};
 
 export class City {
-    constructor(Name,Latitude,Longitude,Population) {
-        this.Name = Name;
-        this.Latitude = Latitude;
-        this.Longitude = Longitude;
-        this.Population = Population;
-        this.key=counter1; 
-        counter1=counter1+1;    
-    } 
-    show (){
-        let str= this.Name +", "+this.Latitude+", "+this.Longitude+", "+this.Population;
-        console.log(str);
+  constructor(Name, Latitude, Longitude, Population) {
+    this.Name = Name;
+    this.Latitude = Latitude;
+    this.Longitude = Longitude;
+    this.Population = Population;
+    this.key = counter1;
+    counter1 = counter1 + 1;
+  }
+  show() {
+    let str =
+      this.Name +
+      ", " +
+      this.Latitude +
+      ", " +
+      this.Longitude +
+      ", " +
+      this.Population;
+    console.log(str);
+  }
+  movedIn(num) {
+    this.Population = this.Population + num;
+  }
+  movedOut(num) {
+    this.Population = this.Population - num;
+  }
+  howBig() {
+    if (this.Population > 100000) {
+      return "City";
+    } else if (this.Population > 20000 && this.Population <= 100000) {
+      return "Large Town";
+    } else if (this.Population >= 1000 && this.Population <= 20000) {
+      return "Town";
+    } else if (this.Population > 100 && this.Population < 20000) {
+      return "Village";
+    } else {
+      return "Hamlet";
     }
-    movedIn(num){
-        this.Population=this.Population+num;
+  }
+  whichSphere() {
+    if (this.Latitude >= 0) {
+      return "City is in Northern Hemisphere";
+    } else {
+      return "City is in Southern Hemisphere";
     }
-    movedOut(num){
-        this.Population=this.Population-num;
-    }
-    howBig(){
-        if (this.Population>100000){
-            return "City";
-        } else if (this.Population>20000 && this.Population<= 100000){
-            return "Large Town";
-        } else if (this.Population>=1000 && this.Population<= 20000){
-            return "Town";
-        } else if (this.Population>100 && this.Population< 20000){
-            return "Village";
-        } else {
-            return "Hamlet";
-        }
-    }
-    whichSphere(){
-        if (this.Latitude>=0){
-            return "City is in Northern Hemisphere";
-        } else {
-            return "City is in Southern Hemisphere";
-        }
-    }
+  }
 }
 
-
 export class Community {
-    constructor(data=[]){
-        this.data=data;
+  constructor(data = []) {
+    this.data = data;
+  }
+  getMostNorthern() {
+    let mostNorth = 0;
+    let mostNorthName = "";
+    for (let i = 0; i < this.data.length; i++) {
+      if (this.data[i].Latitude > mostNorth) {
+        mostNorth = this.data[i].Latitude;
+        mostNorthName = this.data[i].Name;
+      }
     }
-    getMostNorthern(){
-        let mostNorth=0;
-        let mostNorthName='';      
-        for (let i=0;i<this.data.length;i++){
-            if (this.data[i].lat>mostNorth){
-                mostNorth=this.data[i].lat;
-                mostNorthName=this.data[i].city;
-            }
-        }
-        return mostNorthName;    
+    return mostNorthName;
+  }
+  getMostSouthern() {
+    let mostSouth = 90;
+    let mostSouthName = "";
+    for (let i = 0; i < this.data.length; i++) {
+      if (this.data[i].Latitude < mostSouth) {
+        mostSouth = this.data[i].Latitude;
+        mostSouthName = this.data[i].Name;
+      }
     }
-    getMostSouthern(){
-        let mostSouth=90;
-        let mostSouthName='';      
-        for (let i=0;i<this.data.length;i++){
-            if (this.data[i].lat<mostSouth){
-                mostSouth=this.data[i].lat;
-                mostSouthName=this.data[i].city;
-            }
-        }
-        return mostSouthName;    
+    return mostSouthName;
+  }
+  getPopulation() {
+    let population = 0;
+    for (let i = 0; i < this.data.length; i++) {
+      population = population + this.data[i].Population;
     }
-    getPopulation(){
-        let population = 0;
-        for (let i=0;i<this.data.length;i++){
-            population = population + this.data[i].Population; 
-        }
-        return population;
-    }
-    createCity(Name,Latitude=0,Longitude=0,Population=0){
-        let newCity= new City (Name,Latitude,Longitude,Population);
-        this.data.push(newCity);
-    }
-    deleteCity(selected){
-        //find the data arrays position of the clicked on card, cards should be set up in order. Clicking delete on a card will delete it in the data array, and thus in the broswer.
-        this.data.splice(selected,1)
-    }
-    objectification(){
-        this.data= Object.assign({},this.data)
-    }
-
-
+    return population;
+  }
+  createCity(Name, Latitude = 0, Longitude = 0, Population = 0) {
+    let newCity = new City(Name, Latitude, Longitude, Population);
+    this.data.push(newCity);
+  }
+  deleteCity(selected) {
+    //find the data arrays position of the clicked on card, cards should be set up in order. Clicking delete on a card will delete it in the data array, and thus in the broswer.
+    this.data.splice(selected, 1);
+  }
+  objectification() {
+    this.data = Object.assign({}, this.data);
+  }
 }
 
 export default functions;
