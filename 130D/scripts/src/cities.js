@@ -1,13 +1,62 @@
 // const fetch = require("node-fetch");
+
+export class Community {
+  constructor(data = []) {
+    this.data = data;
+  }
+  getMostNorthern() {
+    let mostNorth = 0;
+    let mostNorthName = "";
+    for (let i = 0; i < this.data.length; i++) {
+      if (this.data[i].Latitude > mostNorth) {
+        mostNorth = this.data[i].Latitude;
+        mostNorthName = this.data[i].Name;
+      }
+    }
+    return mostNorthName;
+  }
+  getMostSouthern() {
+    let mostSouth = 90;
+    let mostSouthName = "";
+    for (let i = 0; i < this.data.length; i++) {
+      if (this.data[i].Latitude < mostSouth) {
+        mostSouth = this.data[i].Latitude;
+        mostSouthName = this.data[i].Name;
+      }
+    }
+    return mostSouthName;
+  }
+  getPopulation() {
+    let population = 0;
+    for (let i = 0; i < this.data.length; i++) {
+      population = population + this.data[i].Population;
+    }
+    return population;
+  }
+  createCity(Name, Latitude = 0, Longitude = 0, Population = 0) {
+    let newCity = new City(Name, Latitude, Longitude, Population);
+    this.data.push(newCity);
+  }
+  deleteCity(selected) {
+    //find the data arrays position of the clicked on card, cards should be set up in order. Clicking delete on a card will delete it in the data array, and thus in the broswer.
+    this.data.splice(selected, 1);
+  }
+  objectification() {
+    this.data = Object.assign({}, this.data);
+  }
+}
 let counter1 = 1;
+export const Community1 = new Community();
 const functions = {
+   
     async getCities(url) {
         try {
           const response = await fetch(url);
-          const Community1 = await response.json();
+          // console.log(await response.json());
+          const data = await response.json();
           // console.log("log from page load get cities, json from community class");
-        //   console.log(Community1);
-          return await Community1;
+          // console.log(data);
+          return await data;
         } catch (error) {
           console.error("Error", error);
           throw error;
@@ -16,12 +65,10 @@ const functions = {
    async onLoad(url) {
     try {
       let data = await functions.getCities(url);
-    //   console.log(data);
       // console.log("make a new community from server data");
-      const Community1 = new Community(data);
-      functions.getCities(url);
+      // const Community1 = new Community();
       // need to make the data from server a City class
-      let size = ( Community1.data).length;
+      let size = data.length;
       for (let i = 0; i < size; i++) {
         Community1.createCity(
           data[i].Name,
@@ -40,8 +87,6 @@ const functions = {
         );
       }
       functions.updateUI(Community1);
-      // Community1.objectification();
-      console.log(Community1);
       return Community1;
     } catch (error) {
       console.error("Error", error);
@@ -50,7 +95,7 @@ const functions = {
   },
 
   async postData(url = "http://127.0.0.1:5000/add", data = {}) {
-    // console.log("saved");
+  
     const response = await fetch(url, {
       method: "POST",
       mode: "cors",
@@ -186,50 +231,6 @@ export class City {
   }
 }
 
-export class Community {
-  constructor(data = []) {
-    this.data = data;
-  }
-  getMostNorthern() {
-    let mostNorth = 0;
-    let mostNorthName = "";
-    for (let i = 0; i < this.data.length; i++) {
-      if (this.data[i].Latitude > mostNorth) {
-        mostNorth = this.data[i].Latitude;
-        mostNorthName = this.data[i].Name;
-      }
-    }
-    return mostNorthName;
-  }
-  getMostSouthern() {
-    let mostSouth = 90;
-    let mostSouthName = "";
-    for (let i = 0; i < this.data.length; i++) {
-      if (this.data[i].Latitude < mostSouth) {
-        mostSouth = this.data[i].Latitude;
-        mostSouthName = this.data[i].Name;
-      }
-    }
-    return mostSouthName;
-  }
-  getPopulation() {
-    let population = 0;
-    for (let i = 0; i < this.data.length; i++) {
-      population = population + this.data[i].Population;
-    }
-    return population;
-  }
-  createCity(Name, Latitude = 0, Longitude = 0, Population = 0) {
-    let newCity = new City(Name, Latitude, Longitude, Population);
-    this.data.push(newCity);
-  }
-  deleteCity(selected) {
-    //find the data arrays position of the clicked on card, cards should be set up in order. Clicking delete on a card will delete it in the data array, and thus in the broswer.
-    this.data.splice(selected, 1);
-  }
-  objectification() {
-    this.data = Object.assign({}, this.data);
-  }
-}
+
 
 export default functions;

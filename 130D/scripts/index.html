@@ -1,39 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
-<h1 id="title">City Thing</h1>
-<p id="topBar">Most Northern: ,Most Southern:, Total Population: </p>
-<div class="form-popup" id="myForm">
-    <div class="form-container">
-      <h1>City Info</h1>
-  
-      <label for="name"><b>Name</b></label>
-      <input type="text" placeholder="Enter City Name" name="name" required>
+  <body>
+    <h1 id="title">City Thing</h1>
+    <!-- <div><button id="idStart" onclick=displayMain()>Start</button></div> -->
+    <div id="idMain">
+      <p id="topBar">Most Northern: ,Most Southern:, Total Population:</p>
+      <div class="form-popup" id="myForm">
+        <div class="form-container">
+          <h1>City Info</h1>
 
-      <label for="lat"><b>Latitude</b></label>
-      <input type="text" placeholder="Enter Latitude" name="lat" default=0>
+          <label for="name"><b>Name</b></label>
+          <input
+            type="text"
+            placeholder="Enter City Name"
+            name="name"
+            required
+          />
 
-      <label for="long"><b>Longitude</b></label>
-      <input type="text" placeholder="Enter Longitude" name="long" default=0>
+          <label for="lat"><b>Latitude</b></label>
+          <input
+            type="text"
+            placeholder="Enter Latitude"
+            name="lat"
+            default="0"
+          />
 
-      <label for="pop"><b>Population</b></label>
-      <input type="text" placeholder="Enter Population" name="pop" default=0>
+          <label for="long"><b>Longitude</b></label>
+          <input
+            type="text"
+            placeholder="Enter Longitude"
+            name="long"
+            default="0"
+          />
 
-      <button id="add" class="btn">Add a new City</button>
-      <button type="submit" class="btn cancel" onclick="closeForm()">Close</button>
-      
-    </div>
-  </div>
-<button id="save">Save</button>
-<div id="cardDiv" class='cardDiv'>
-    <!-- <div class= "testCard">Here is some card text        <div class="cardUpperDiv">
+          <label for="pop"><b>Population</b></label>
+          <input
+            type="text"
+            placeholder="Enter Population"
+            name="pop"
+            default="0"
+          />
+
+          <button id="add" class="btn">Add a new City</button>
+          <button type="submit" class="btn cancel" onclick="closeForm()">
+            Close
+          </button>
+        </div>
+      </div>
+      <button id="save">Save</button>
+      <div id="cardDiv" class="cardDiv">
+        <!-- <div class= "testCard">Here is some card text        <div class="cardUpperDiv">
             <p>some upper text</p>
         </div>
         
@@ -50,34 +73,41 @@
               </div>
         </div>
     </div> -->
-</div>
-<button class="open-button" onclick="openForm()">Add City</button>  
-    
-</body>
-<footer>
-    <script type ="module" src="src/index.js"></script>
-<script type ="text/javascript">
-    function openCity(cityName) {
-        var x = document.getElementsByClassName('cardTab'+cityName);
-        if (cityName==="info"){
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "block";
-                document.getElementsByClassName('cardTabsettings')[i].style.display="none";
-            }
+      </div>
+      <button class="open-button" onclick="openForm()">Add City</button>
+    </div>
+  </body>
+  <footer>
+    <script type="module" src="src/index.js"></script>
+    <script type="text/javascript">
+      function openCity(cityName) {
+        var x = document.getElementsByClassName("cardTab" + cityName);
+        if (cityName === "info") {
+          for (i = 0; i < x.length; i++) {
+            x[i].style.display = "block";
+            document.getElementsByClassName("cardTabsettings")[
+              i
+            ].style.display = "none";
+          }
         } else {
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "block";
-                document.getElementsByClassName('cardTabinfo')[i].style.display="none";
-            }
+          for (i = 0; i < x.length; i++) {
+            x[i].style.display = "block";
+            document.getElementsByClassName("cardTabinfo")[i].style.display =
+              "none";
+          }
         }
-    }
-    function openForm() {
-         document.getElementById("myForm").style.display = "block";
-            }
+      }
+      function openForm() {
+        document.getElementById("myForm").style.display = "block";
+      }
 
-    function closeForm() {
+      function closeForm() {
         document.getElementById("myForm").style.display = "none";
-            }
-</script>
-</footer>
+      }
+    //   function displayMain () {
+    //     document.getElementById("idMain").style.display = "block";
+    //     idStart.style.display = "none";
+    //   }
+    </script>
+  </footer>
 </html>

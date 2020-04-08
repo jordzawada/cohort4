@@ -68,8 +68,10 @@ test("test the post", async () => {
   // Community1.objectification();
   // console.log(Community1.data);
   let resp = await functions.postData(url, Community1.data);
-  console.log(await resp);
+  // console.log(await resp);
   expect(resp.status).toEqual(200);
+  const data2 = await functions.postData("http://127.0.0.1:5000/delete", {key:4});
+  expect(data2.status).toEqual(200);
 });
 
 test("test the dom functions", async () => {
