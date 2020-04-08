@@ -27,9 +27,9 @@ export class Community {
     return mostSouthName;
   }
   getPopulation() {
-    let population = 0;
+    let population =0;
     for (let i = 0; i < this.data.length; i++) {
-      population = population + this.data[i].Population;
+      population = population + Number(this.data[i].Population);
     }
     return population;
   }
@@ -41,9 +41,9 @@ export class Community {
     //find the data arrays position of the clicked on card, cards should be set up in order. Clicking delete on a card will delete it in the data array, and thus in the broswer.
     this.data.splice(selected, 1);
   }
-  objectification() {
-    this.data = Object.assign({}, this.data);
-  }
+  // objectification() {
+  //   this.data = Object.assign({}, this.data);
+  // }
 }
 let counter1 = 1;
 export const Community1 = new Community();
@@ -74,7 +74,7 @@ const functions = {
           data[i].Name,
           data[i].Latitude,
           data[i].Longitude,
-          data[i].Population
+          data[i].Population,
         );
         let currentData =  data;
         let Name = currentData[i].Name;
@@ -83,10 +83,14 @@ const functions = {
           Name,
           currentData[i].Latitude,
           currentData[i].Longitude,
-          currentData[i].Population
+          currentData[i].Population,
+          Community1.data[i].howBig(),
+          Community1.data[i].whichSphere(),
         );
       }
       functions.updateUI(Community1);
+      console.log(Community1);
+      
       return Community1;
     } catch (error) {
       console.error("Error", error);
@@ -114,7 +118,7 @@ const functions = {
     // console.log(json, typeof(json));
     return json;
   },
-  createCard(cardDiv, name, lat, long, pop) {
+  createCard(cardDiv, name, lat, long, pop,howbig,size) {
     let targetDiv = document.getElementById(cardDiv);
     let node = document.createElement("div");
     node.classList.add("testCard");
@@ -124,7 +128,7 @@ const functions = {
     let newUpper = document.createElement("div");
     newUpper.classList.add("cardUpperDiv");
     let upperText = document.createElement("p");
-    upperText.textContent = "some upper text";
+    upperText.textContent = "photo";
     newUpper.appendChild(upperText);
     let newLower = document.createElement("div");
     newLower.classList.add("cardLowerDiv");
@@ -136,12 +140,25 @@ const functions = {
     newButtonDiv.classList.add("w3-bar", "w3-black");
     newInfo.classList.add("cardTabinfo");
     newInfo.id = "info";
-    lowerTextInfo.textContent = `Lat: ${lat}, Long: ${long}, Population: ${pop}`;
+    lowerTextInfo.textContent = `Lat: ${lat}, Long: ${long}, Population: ${pop}, How big: ${howbig}, Hemisphere: ${size}`;
     newInfo.appendChild(lowerTextInfo);
     newSettings.classList.add("cardTabsettings");
     newSettings.id = "settings";
-    lowerText.textContent = "settings tab";
+    lowerText.textContent = "Settings";
+    let deleteButton = document.createElement("button");
+    deleteButton.id = "deleteCity";
+    deleteButton.textContent= "Delete";
+    let moveInButton =document.createElement("button");
+    moveInButton.id = "moveIn";
+    moveInButton.textContent= "Move In";
+    let moveOutButton =document.createElement("button");
+    moveOutButton.id = "moveOut";
+    moveOutButton.textContent= "Move Out";
+
     newSettings.appendChild(lowerText);
+    newSettings.appendChild(deleteButton);
+    newSettings.appendChild(moveInButton);
+    newSettings.appendChild(moveOutButton);
     newSettings.style.display = "none";
     let newInfoButton = document.createElement("button");
     newInfoButton.classList.add("w3-bar-item", "w3-button");

@@ -8,7 +8,7 @@ const Community1 = new Community();
 async function startPress() {
     const data = functions.onLoad(url).then();
     // const Community1= await data;
-    console.log(await data);
+    // console.log(await data);
     return await data;
 }
 startPress();
@@ -21,13 +21,16 @@ async function funcs(){
         for (let i=0;i<size;i++){
          functions.postData(urlAdd, Community1.data[i])
         }
+        // functions.updateUI()
     }  else if (event.target.id==="add"){
         let name =document.getElementsByName('name')[0].value;
         let lat =document.getElementsByName('lat')[0].value;
         let long =document.getElementsByName('long')[0].value;
         let pop =document.getElementsByName('pop')[0].value;
-        functions.createCard('cardDiv',name, lat,long,pop);
-        Community1.createCity(name,lat,long,pop);     
+        Community1.createCity(name,lat,long,pop);
+    //     let size = Community1.data[0].howBig();
+    //     let sphere = Community1.data[0].whichSphere();
+        functions.createCard('cardDiv',name, lat,long,pop,"reload","reload");   
     } 
 }
 
