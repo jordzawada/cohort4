@@ -89,15 +89,12 @@ const functions = {
         );
       }
       functions.updateUI(Community1);
-      console.log(Community1);
-      
       return Community1;
     } catch (error) {
       console.error("Error", error);
       throw error;
     }
   },
-
   async postData(url = "http://127.0.0.1:5000/add", data = {}) {
   
     const response = await fetch(url, {
@@ -180,21 +177,27 @@ const functions = {
     // node.appendChild(newCard);
     targetDiv.appendChild(node);
   },
-  // async updateCards(data){
-  //     //this function will auto run and fill in data into the cards based on the controller object
-  //     let size = Object.keys(await data).length;
-  //     console.log("update cards from server, the data comes in as:");
-  //     console.log(await data);
-  //     console.log("the type of this Community is:");
-  //     console.log( typeof(data));
-  //     console.log("the keys from this Community are:");
-  //     console.log(Object.keys(await data));
-  //     console.log("oh look, data is a key");
-  //     console.log("log Community.data");
-  //     console.log(await data.data);
-  //     console.log(":(");
-
-  // },
+  newCity(urlAdd,Community1){
+    let name =document.getElementsByName('name')[0].value;
+    let lat =document.getElementsByName('lat')[0].value;
+    let long =document.getElementsByName('long')[0].value;
+    let pop =document.getElementsByName('pop')[0].value;
+    Community1.createCity(name,lat,long,pop); 
+    let size=Community1.data[0].howBig();
+    let sphere= Community1.data[0].whichSphere();
+    functions.postData(urlAdd,Community1.data[0]);
+    functions.createCard(
+      "cardDiv", name,lat,long,pop,size, sphere)
+    Community1.data=[];
+  },
+  
+  async deleteCity(keyNum) {
+    //delete the city based on key
+    let resp = await functions.postData("http://127.0.0.1:5000/delete",{key:keyNum});
+    console.log(await resp.status);
+    
+  },
+  
   updateUI(community) {
     topBar.textContent = `Most Northern: ${community.getMostNorthern()}, Most Southern: ${community.getMostSouthern()}, Total Population: ${community.getPopulation()} `;
   },

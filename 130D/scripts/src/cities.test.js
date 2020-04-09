@@ -4,8 +4,6 @@ global.fetch = require("node-fetch");
 
 test("test the basics", async () => {
   // test async and server ability to hand out data
-//   let url = "http://127.0.0.1:5000/all";
-//   let data = await functions.getCities(url);
 
   // initiate a new City class
   let newCity = new City("test1", 45.6, 75.4, 90000);
@@ -31,8 +29,11 @@ test("test the basics", async () => {
 });
 
 test("test the community controller", async () => {
-  let url = "http://127.0.0.1:5000/all";
-  const data = await functions.getCities(url);
+  let data = [
+     { "key": 1, "Name": "Calgary", "Latitude": 51.05, "Longitude": -114.05 , "Population": 1400000},
+     { "key": 2, "Name": "Edmonton", "Latitude": 53.55, "Longitude": -113.49, "Population": 1200000 },
+     { "key": 3, "Name": "Red Deer", "Latitude": 52.28, "Longitude": -113.81, "Population": 140000 }
+  ]
   const Community1 = new Community(data);
   expect(Community1.data[0].Name).toBe("Calgary");
   expect(Community1.data[1].Name).toBe("Edmonton");
@@ -61,6 +62,7 @@ test("test the community controller", async () => {
 });
 
 test("test the post", async () => {
+  // let clear = functions.postData("http://127.0.0.1:5000/clear");
   // need the server running from 920
   let url = "http://127.0.0.1:5000/add";
   const data = { key: 4, name:"Jordan" };
@@ -83,3 +85,12 @@ test("test the dom functions", async () => {
   let z = document.getElementById("cloneTest").children.length;
   expect(z).toBe(2);
 });
+
+test("test the delete from server function", async () => {
+  let data = await functions.getCities("http://127.0.0.1:5000/all");
+  expect(data.length).toBe(3);
+  await functions.deleteCity(2);
+  // console.log(data);
+  expect(data.length).toBe(2);
+});
+
