@@ -1,5 +1,5 @@
 // const fetch = require("node-fetch");
-
+let counter1 = 1;
 export class Community {
   constructor(data = []) {
     this.data = data;
@@ -27,7 +27,7 @@ export class Community {
     return mostSouthName;
   }
   getPopulation() {
-    let population =0;
+    let population = 0;
     for (let i = 0; i < this.data.length; i++) {
       population = population + Number(this.data[i].Population);
     }
@@ -45,24 +45,23 @@ export class Community {
   //   this.data = Object.assign({}, this.data);
   // }
 }
-let counter1 = 1;
+
 export const Community1 = new Community();
 const functions = {
-   
-    async getCities(url) {
-        try {
-          const response = await fetch(url);
-          // console.log(await response.json());
-          const data = await response.json();
-          // console.log("log from page load get cities, json from community class");
-          // console.log(data);
-          return await data;
-        } catch (error) {
-          console.error("Error", error);
-          throw error;
-        }
-      },
-   async onLoad(url) {
+  async getCities(url) {
+    try {
+      const response = await fetch(url);
+      // console.log(await response.json());
+      const data = await response.json();
+      // console.log("log from page load get cities, json from community class");
+      // console.log(data);
+      return await data;
+    } catch (error) {
+      console.error("Error", error);
+      throw error;
+    }
+  },
+  async onLoad(url) {
     try {
       let data = await functions.getCities(url);
       // console.log("make a new community from server data");
@@ -74,10 +73,11 @@ const functions = {
           data[i].Name,
           data[i].Latitude,
           data[i].Longitude,
-          data[i].Population,
+          data[i].Population
         );
-        let currentData =  data;
+        let currentData = data;
         let Name = currentData[i].Name;
+        
         functions.createCard(
           "cardDiv",
           Name,
@@ -86,9 +86,11 @@ const functions = {
           currentData[i].Population,
           Community1.data[i].howBig(),
           Community1.data[i].whichSphere(),
+          Community1.data[i].key,
         );
       }
       functions.updateUI(Community1);
+      // console.log(Community1.data);
       return Community1;
     } catch (error) {
       console.error("Error", error);
@@ -96,7 +98,6 @@ const functions = {
     }
   },
   async postData(url = "http://127.0.0.1:5000/add", data = {}) {
-  
     const response = await fetch(url, {
       method: "POST",
       mode: "cors",
@@ -115,7 +116,8 @@ const functions = {
     // console.log(json, typeof(json));
     return json;
   },
-  createCard(cardDiv, name, lat, long, pop,howbig,size) {
+  createCard(cardDiv, name, lat, long, pop, howbig, size,key) {
+    let br = document.createElement("br");
     let targetDiv = document.getElementById(cardDiv);
     let node = document.createElement("div");
     node.classList.add("testCard");
@@ -125,7 +127,7 @@ const functions = {
     let newUpper = document.createElement("div");
     newUpper.classList.add("cardUpperDiv");
     let upperText = document.createElement("p");
-    upperText.textContent = "photo";
+    upperText.appendChild(br);
     newUpper.appendChild(upperText);
     let newLower = document.createElement("div");
     newLower.classList.add("cardLowerDiv");
@@ -137,25 +139,40 @@ const functions = {
     newButtonDiv.classList.add("w3-bar", "w3-black");
     newInfo.classList.add("cardTabinfo");
     newInfo.id = "info";
-    lowerTextInfo.textContent = `Lat: ${lat}, Long: ${long}, Population: ${pop}, How big: ${howbig}, Hemisphere: ${size}`;
+    lowerTextInfo.textContent = `Lat: ${lat}, Long: ${long}, Population: ${pop}, 
+    How big: ${howbig}, 
+    Hemisphere: ${size}`;
     newInfo.appendChild(lowerTextInfo);
     newSettings.classList.add("cardTabsettings");
     newSettings.id = "settings";
-    lowerText.textContent = "Settings";
+    // lowerText.textContent = "Settings";
     let deleteButton = document.createElement("button");
     deleteButton.id = "deleteCity";
-    deleteButton.textContent= "Delete";
-    let moveInButton =document.createElement("button");
+    deleteButton.textContent = "Delete";
+    let moveInButton = document.createElement("button");
     moveInButton.id = "moveIn";
-    moveInButton.textContent= "Move In";
-    let moveOutButton =document.createElement("button");
+    moveInButton.textContent = "Move In";
+    let moveOutButton = document.createElement("button");
     moveOutButton.id = "moveOut";
-    moveOutButton.textContent= "Move Out";
-
+    moveOutButton.textContent = "Move Out";
     newSettings.appendChild(lowerText);
     newSettings.appendChild(deleteButton);
-    newSettings.appendChild(moveInButton);
-    newSettings.appendChild(moveOutButton);
+    let keyText = document.createElement("p");
+    keyText.id= "idKey";
+    keyText.classList.add("clKey");
+    keyText.textContent=key;
+    newSettings.appendChild(keyText)
+    let textFieldIn = document.createElement("input");
+    // textFieldIn.id="idTextFieldIn";
+    upperText.appendChild(moveInButton);
+    upperText.appendChild(textFieldIn);
+
+    upperText.appendChild(br);
+    let textFieldOut = document.createElement("input");
+    // textFieldOut.id="idTextFieldOut";
+    upperText.appendChild(moveOutButton);
+    upperText.appendChild(textFieldOut);
+
     newSettings.style.display = "none";
     let newInfoButton = document.createElement("button");
     newInfoButton.classList.add("w3-bar-item", "w3-button");
@@ -177,29 +194,30 @@ const functions = {
     // node.appendChild(newCard);
     targetDiv.appendChild(node);
   },
-  newCity(urlAdd,Community1){
-    let name =document.getElementsByName('name')[0].value;
-    let lat =document.getElementsByName('lat')[0].value;
-    let long =document.getElementsByName('long')[0].value;
-    let pop =document.getElementsByName('pop')[0].value;
-    Community1.createCity(name,lat,long,pop); 
-    let size=Community1.data[0].howBig();
-    let sphere= Community1.data[0].whichSphere();
-    functions.postData(urlAdd,Community1.data[0]);
-    functions.createCard(
-      "cardDiv", name,lat,long,pop,size, sphere)
-    Community1.data=[];
+  async newCity(urlAdd, Community1) {
+    let name = document.getElementsByName("name")[0].value;
+    let lat = document.getElementsByName("lat")[0].value;
+    let long = document.getElementsByName("long")[0].value;
+    let pop = document.getElementsByName("pop")[0].value;
+    Community1.createCity(name, lat, long, pop);
+    let size = Community1.data[0].howBig();
+    let sphere = Community1.data[0].whichSphere();
+    await functions.postData(urlAdd, Community1.data[0]);
+    await functions.createCard("cardDiv", name, lat, long, pop, size, sphere);
+    Community1.data = [];
+    await location.reload(); 
   },
-  
+
   async deleteCity(keyNum) {
     //delete the city based on key
-    let resp = await functions.postData("http://127.0.0.1:5000/delete",{key:keyNum});
+    let resp = await functions.postData("http://127.0.0.1:5000/delete", {
+      key: keyNum,
+    });
     console.log(await resp.status);
-    
   },
-  
+
   updateUI(community) {
-    topBar.textContent = `Most Northern: ${community.getMostNorthern()}, Most Southern: ${community.getMostSouthern()}, Total Population: ${community.getPopulation()} `;
+    topBar.textContent = `Most Northern: ${community.getMostNorthern()}/ Most Southern: ${community.getMostSouthern()}/ Total Population: ${community.getPopulation()} `;
   },
 };
 
@@ -250,7 +268,5 @@ export class City {
     }
   }
 }
-
-
 
 export default functions;

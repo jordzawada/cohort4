@@ -68,7 +68,7 @@ test("test the post", async () => {
   const data = { key: 4, name:"Jordan" };
   const Community1 = new Community(data);
   // Community1.objectification();
-  // console.log(Community1.data);
+  // console.log(Community1);
   let resp = await functions.postData(url, Community1.data);
   
   // console.log(await resp);
@@ -84,13 +84,24 @@ test("test the dom functions", async () => {
   functions.createCard("cloneTest");
   let z = document.getElementById("cloneTest").children.length;
   expect(z).toBe(2);
+
+
+
 });
 
 test("test the delete from server function", async () => {
+  let clear = functions.postData("http://127.0.0.1:5000/clear");
   let data = await functions.getCities("http://127.0.0.1:5000/all");
-  expect(data.length).toBe(3);
-  await functions.deleteCity(2);
   // console.log(data);
-  expect(data.length).toBe(2);
+  expect(data.length).toBe(0);
+  let resp = await functions.postData("http://127.0.0.1:5000/add", { key: 4, name:"Jordan" });
+  data = await functions.getCities("http://127.0.0.1:5000/all");
+  expect(data.length).toBe(1);
+  await functions.deleteCity(4);
+  data = await functions.getCities("http://127.0.0.1:5000/all");
+  // console.log(data);
+  expect(data.length).toBe(0);
 });
+
+
 
