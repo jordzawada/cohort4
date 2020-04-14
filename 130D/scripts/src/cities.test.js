@@ -100,5 +100,19 @@ test("test the delete from server function", async () => {
   expect(data.length).toBe(0);
 });
 
+test("130E test", async () => {
+  let myCity = new City("test1", 1, 1, 2);
+  let myFav= myCity;
+  expect(myCity.Population).toBe(2);
+  expect(myFav.Population).toBe(2);
+  myFav.movedIn(1);
+  expect(myCity.Population).toBe(3);
+  expect(myFav.Population).toBe(3);
+  myCity.movedIn(100);
+  expect(myCity.Population).toBe(103);
+  expect(myFav.Population).toBe(103);
+});
+
+
 
 
