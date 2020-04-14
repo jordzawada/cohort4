@@ -16,29 +16,14 @@ async function funcs(){
         let x= e.parentNode.parentNode.parentNode;
         x.remove();
     }else if(e.id==="moveIn") {
-        let moveValue = Number(e.parentNode.childNodes[1].value);
         let keyPull = Number(e.parentNode.parentNode.parentNode.getElementsByClassName('clKey')[0].textContent);
-        let data = await functions.getCities(url);
-        await functions.postData('http://127.0.0.1:5000/clear');
-        console.log(data);
-        for (let i = 0; i < data.length; i++) {
-            console.log(data[i].key);
-            Community1.createCity(
-              data[i].Name,
-              data[i].Latitude,
-              data[i].Longitude,
-              data[i].Population
-            );
-            console.log(Community1.data[i]);
-            if (data[i].key===keyPull){
-               console.log(data[i].Population);
-                Community1.data[i].movedIn(moveValue);
-                console.log(data[i].Population);
-            }
-            await functions.postData(urlAdd, Community1.data[i]);
-          }
-        e.parentNode.childNodes[1].value="";
-    }
+        let moveValue = Number(e.parentNode.childNodes[1].value);
+        functions.moveIn(keyPull,moveValue);
+    }  else if(e.id==="moveOut") {
+        let keyPull = Number(e.parentNode.parentNode.parentNode.getElementsByClassName('clKey')[0].textContent);
+        let moveValue = Number(e.parentNode.childNodes[4].value);
+        functions.moveOut(keyPull,moveValue);
+    } 
 }
 
 document.body.addEventListener('click',funcs);

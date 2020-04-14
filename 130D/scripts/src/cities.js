@@ -216,6 +216,71 @@ const functions = {
     console.log(await resp.status);
   },
 
+  async moveIn (keyPull, moveValue){
+    const e= event.target;
+    let data = await functions.getCities('http://127.0.0.1:5000/all');
+        await functions.postData('http://127.0.0.1:5000/clear');
+        console.log(data);
+        let highestKey= 0;
+        for (let i = 0; i < data.length; i++){
+          if (data[i].key>highestKey){
+            highestKey=data[i].key;
+          };
+          
+        };
+        console.log(highestKey); 
+        for (let i = 0; i < highestKey; i++) {
+            console.log(data[i].key);
+            Community1.createCity(
+              data[i].Name,
+              data[i].Latitude,
+              data[i].Longitude,
+              data[i].Population
+            );
+            console.log(Community1.data[i]);
+            if (data[i].key===keyPull){
+              //  console.log(data[i].Population);
+                await Community1.data[i].movedIn(moveValue);
+                // console.log(await data[i].Population);
+            }
+            await functions.postData('http://127.0.0.1:5000/add', Community1.data[i]);
+          }
+        e.parentNode.childNodes[1].value="";
+        await location.reload(); 
+  },
+  async moveOut (keyPull, moveValue){
+    const e= event.target;
+    let data = await functions.getCities('http://127.0.0.1:5000/all');
+        await functions.postData('http://127.0.0.1:5000/clear');
+        console.log(data);
+        let highestKey= 0;
+        for (let i = 0; i < data.length; i++){
+          if (data[i].key>highestKey){
+            highestKey=data[i].key;
+          };
+          
+        };
+        console.log(highestKey); 
+        for (let i = 0; i < highestKey; i++) {
+            console.log(data[i].key);
+            Community1.createCity(
+              data[i].Name,
+              data[i].Latitude,
+              data[i].Longitude,
+              data[i].Population
+            );
+            console.log(Community1.data[i]);
+            if (data[i].key===keyPull){
+               console.log(data[i].Population);
+                await Community1.data[i].movedOut(moveValue);
+                console.log(await data[i].Population);
+            }
+            await functions.postData('http://127.0.0.1:5000/add', Community1.data[i]);
+          }
+        e.parentNode.childNodes[1].value="";
+        // await location.reload(); 
+  },
+
   updateUI(community) {
     topBar.textContent = `Most Northern: ${community.getMostNorthern()}/ Most Southern: ${community.getMostSouthern()}/ Total Population: ${community.getPopulation()} `;
   },
@@ -242,10 +307,10 @@ export class City {
     console.log(str);
   }
   movedIn(num) {
-    this.Population = this.Population + num;
+    this.Population = Number(this.Population) + num;
   }
   movedOut(num) {
-    this.Population = this.Population - num;
+    this.Population = Number(this.Population) - num;
   }
   howBig() {
     if (this.Population > 100000) {

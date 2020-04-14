@@ -84,9 +84,6 @@ test("test the dom functions", async () => {
   functions.createCard("cloneTest");
   let z = document.getElementById("cloneTest").children.length;
   expect(z).toBe(2);
-
-
-
 });
 
 test("test the delete from server function", async () => {
