@@ -7,13 +7,13 @@ div{
 }
 
 .TTT-logo {
-    height: 40vmin;
+    height: 20vmin;
     pointer-events: none;
   }
 
   @media (prefers-reduced-motion: no-preference) {
     .TTT-logo {
-      animation: App-logo-spin infinite 20s linear;
+      animation: App-logo-spin infinite 20s linear alternate;
     }
   }
 
@@ -28,10 +28,11 @@ div{
 
   .TTT:hover {
     color: rgba(255, 255, 255, 1);
-    box-shadow: 0 5px 15px rgba(145, 92, 182, 1);
+    box-shadow: 0 5px 25px rgba(145, 92, 182, 1);
    }
   
 
   .TTT:active {
-      filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+      /* filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%); */
+      transform: scale(1.1);
   }

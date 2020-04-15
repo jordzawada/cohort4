@@ -60,6 +60,9 @@ class Game extends React.Component {
       }
 
       return (
+        <div>
+        <h1>Tic-Tac-Toe</h1>
+        
         <div className="game">
           <div className="game-board">
             <Board 
@@ -71,6 +74,7 @@ class Game extends React.Component {
             <div>{status}</div>
             <ol>{moves}</ol>
           </div>
+        </div>
         </div>
       );
     }
@@ -90,6 +94,7 @@ function calculateWinner(squares) {
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+
         return squares[a];
       }
     }
