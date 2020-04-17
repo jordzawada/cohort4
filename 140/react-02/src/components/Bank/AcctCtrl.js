@@ -1,7 +1,7 @@
 import React from 'react';
-import AccountCard from './AccountCard.js'
+import AccountCard from './AccountCard.js';
 
- class Account {
+export class Account {
     constructor (name, balance, key){
         this.name= name;
         this.balance= balance;
@@ -20,8 +20,11 @@ import AccountCard from './AccountCard.js'
         this.accountArr=[];
         this.counter1=1;
     }
-    addAccount (name){
-        let newAccount= new Account(name,0,this.counter1);
+    addAccount (name,balance){
+        if (balance===undefined){
+            balance=0;
+        }
+        let newAccount= new Account(name,balance,this.counter1);
         this.accountArr.push(newAccount); 
         this.counter1++;
     }
@@ -62,13 +65,13 @@ import AccountCard from './AccountCard.js'
         return sum;    
     }
     highlightAccountWithHighestValue (){
-        let arrayHighest =0;
+        let arrayHighest ='blank';
         for (let i=0;i<this.accountArr.length;i++){
             let high = this.accountArr[0].balance;
             let current = this.accountArr[i].balance;
-            if (high< current) {
+            if (high<= current) {
                 high =current;
-                arrayHighest = i;
+                arrayHighest = this.accountArr[i].name;
             }
         }
         return arrayHighest;
@@ -89,37 +92,68 @@ import AccountCard from './AccountCard.js'
 
 const BankAccount = new accountController();
 
-BankAccount.addAccount("test1");
-BankAccount.addAccount("test2");
+BankAccount.addAccount("test1",30);
+BankAccount.addAccount("test2",25);
 
 
 class AcctCtrl extends React.Component{
     constructor(props){
         super(props);
         this.newAccountPress = this.newAccountPress.bind(this);
+        this.handleDepositClick = this.handleDepositClick.bind(this);
+        this.handleDespositTextChange = this.handleDespositTextChange.bind(this);
         this.state ={
             accounts: BankAccount.accountArr,
-
-        };
+            highest: BankAccount.highlightAccountWithHighestValue(),
+            depositValue: ''
+        }; 
     }
-
+   
     newAccountPress(){
-            console.log("pressed");
             BankAccount.addAccount();
             this.setState({accounts: BankAccount.accountArr})
+    }
+
+    handleDespositTextChange(depositText){
+        this.setState({
+            depositValue: depositText,
+          })
+    }
+
+    handleDepositClick(e){
+        BankAccount.accountArr[0].deposit(this.state.depositValue)
+        this.setState({depositValue: ''})
+        console.log(this.state.depositValue)
     }
         
     render(){
         let cards = [];
         let size = this.state.accounts.length;
         for (let i=0;i<size;i++){
-            cards.push(<AccountCard name={this.state.accounts[i].name} balance={this.state.accounts[i].balance}/>)
+            cards.push(<AccountCard 
+                name={this.state.accounts[i].name} 
+                balance={this.state.accounts[i].balance}
+                handleDepositClick = {this.handleDepositClick}
+                depositText={this.state.depositValue}
+                handleDespositTextChange = {this.handleDespositTextChange}
+                // withdrawText={this.state.withdrawTextText}
+                // onWithdrawTextChange={this.handleWithdrawTextChange}
+                />)
         }
         
         return (
         <div>
-            <button id="idNewAccount" onClick={this.newAccountPress}>New Account</button>
-            {cards}
+            <div>
+                </div>
+                        <div>Highest Account: {this.state.highest}</div>
+                <div>
+                <div>
+                <button id="idNewAccount" onClick={this.newAccountPress}>New Account</button>
+                </div>
+                <div>
+                {cards}
+                </div>
+            </div>
             {/* <div>
             this is from the controller array: {BankAccount.accountArr[0].name}
               </div>

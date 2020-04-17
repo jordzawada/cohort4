@@ -1,11 +1,22 @@
 import React from 'react';
 
 class DepositBtn extends React.Component{
-
+    constructor(props) {
+        super(props);
+        this.onDepositTextChange = this.onDepositTextChange.bind(this);
+        this.state = {
+            
+        };
+      }
+      onDepositTextChange(e) {
+        this.props.onDepositTextChange(e.target.value);
+      }
+      
     render(){
         return(
         <div>
-        <button>Deposit</button><input name="deposit" value=""></input>
+        <button onClick={this.props.onDepositClick}>Deposit</button>
+        <input name="deposit" placeholder="Amount" value={this.props.DepositText} onChange={this.onDepositTextChange}></input>
         </div>
         );
     }

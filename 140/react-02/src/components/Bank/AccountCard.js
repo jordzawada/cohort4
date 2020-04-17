@@ -8,8 +8,12 @@ import './AccountCard.css';
 
 class AccountCard extends React.Component{
     
-
-    
+    constructor(props) {
+        super(props);
+        this.state = {
+            
+        };
+    }
     render(){
         return (
         <div className="clAccountCard">    
@@ -23,7 +27,11 @@ class AccountCard extends React.Component{
                     </div>
                 </div>
                 <div >
-                    <DepositBtn />
+                    <DepositBtn 
+                    onDepositClick = {this.props.handleDepositClick} 
+                    depositText = {this.props.depositText}
+                    onDepositTextChange={this.props.handleDespositTextChange}
+                    />
                     <WithdrawBtn />
                 </div>
                 <div >
