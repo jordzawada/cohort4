@@ -1,11 +1,14 @@
 import React from 'react';
-import logo from './logo.svg';
+import Applogo from './components/Applogo.js';
 import './App.css';
 import Bear from './components/Bear.js';
 import TTT from './components/TTT.js';
+import Banklogo from './components/Banklogo.js';
 import Home from './components/Home';
 import Tabs from './components/Tabs';
 import Game from './components/Game';
+import Bank from './components/Bank/Bank';
+import Cities from './components/Cities/cities';
 
 let TTTComp = <TTT />;
 let BearComp = <Bear />;
@@ -16,17 +19,19 @@ function App() {
       <div>
         <h1>React</h1>
           <Tabs>
-          <div label={BearComp}>
-            <Home />
-            </div>
-            <div label={TTTComp}>
-              <Game />
-            </div>
-            <div label=<Bear />>
-              After 'while, <em>Crocodile</em>!
-            </div>
-            <div label=<Bear />>
-              Nothing to see here, this tab is <em>extinct</em>!
+            <div label=<Applogo />>
+              <Home />
+              </div>
+
+              <div label={TTTComp}>
+                <Game />
+              </div>
+
+              <div label=<Banklogo />>
+                <Bank />
+              </div>
+              <div label={BearComp}>
+                <Cities />
             </div>
           </Tabs>
       </div>

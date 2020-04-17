@@ -4,7 +4,7 @@ import './Bear.css'
 
 function Bear() {
     return (
-      <div class="Bear" >
+      <div className="Bear" >
           <img src={logo} className="Bear-logo" alt="logo" />
         
       </div>

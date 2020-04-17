@@ -1,0 +1,28 @@
+.clAccountCard{
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    color:black;
+  }
+
+.AccountCard{
+    background-color: aqua;
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+  }
+
+  .AccountCard:hover{
+    transform: 1.1;
+  }
+  
+  #idNewAccount{
+    float: right;
+    height: 30px;
+  }
+  
+  #idAccountName{
+  text-align: center;
+  font-size: 20px;
+  }

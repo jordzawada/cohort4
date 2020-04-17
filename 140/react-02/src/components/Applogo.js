@@ -1,9 +1,8 @@
 import React from 'react';
-import logo from '../TTT.svg';
+import logo from '../logo.svg';
 import './TTT.css'
 
-
-function TTT() {
+function Applogo() {
     return (
       <div className="TTT" >
           <img src={logo} className="TTT-logo" alt="logo" />
@@ -12,4 +11,4 @@ function TTT() {
     );
   }
   
-  export default TTT;
+  export default Applogo;
