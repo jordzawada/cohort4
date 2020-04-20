@@ -1,5 +1,5 @@
 import React from 'react';
-
+//oncomponeentdidmount do your fetch stuff
 
 // this should be the component that displays the buttons and population.
 class Cities extends React.Component{

@@ -1,15 +1,17 @@
 .clAccountCard{
     display: inline-grid;
     align-content: center;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     color:black;
+    background-color: aqua;
   }
 
 .AccountCard{
-    background-color: aqua;
-    width: 500px;
+    
+    width: 700px;
     border-radius: 10px;
+    background-color: aqua;
   }
 
   .AccountCard:hover{
