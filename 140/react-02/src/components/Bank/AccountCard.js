@@ -31,12 +31,16 @@ class AccountCard extends React.Component{
                     onDepositClick = {this.props.handleDepositClick} 
                     depositText = {this.props.depositText}
                     onDepositTextChange={this.props.handleDespositTextChange}
-                    key={this.props.key}
-                    />
-                    <WithdrawBtn />
+                    /><WithdrawBtn
+                    onWithdrawClick = {this.props.handleWithdrawClick} 
+                    withdrawText = {this.props.withdrawText}
+                    onWithdrawTextChange={this.props.handleWithdrawTextChange}
+                     />
                 </div>
                 <div >
-                    <AcctDeleteBtn />
+                    <AcctDeleteBtn 
+                    delete={this.props.delete}
+                    key={this.props.key}/>
                 </div>
             </div>
         </div>

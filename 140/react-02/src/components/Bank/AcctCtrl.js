@@ -102,11 +102,18 @@ class AcctCtrl extends React.Component{
         this.newAccountPress = this.newAccountPress.bind(this);
         this.handleDepositClick = this.handleDepositClick.bind(this);
         this.handleDespositTextChange = this.handleDespositTextChange.bind(this);
+        this.handleWithdrawClick = this.handleWithdrawClick.bind(this);
+        this.handleWithdrawTextChange = this.handleWithdrawTextChange.bind(this);
+        this.handleDeleteClick = this.handleDeleteClick.bind(this);
+
         this.state ={
             accounts: BankAccount.accountArr,
             highest: BankAccount.highlightAccountWithHighestValue(),
             lowest: BankAccount.highlightAccountWithLowestValue(),
             depositValue: '',
+            withdrawValue: '',
+            total: BankAccount.totalAccounts(),
+
         }; 
     }
    
@@ -121,18 +128,40 @@ class AcctCtrl extends React.Component{
           })
     }
 
+    handleDeleteClick(key){
+        console.log(key);
+        BankAccount.removeAccount(key);
+        this.setState({});
+    }
+
     handleDepositClick(key){
         let size = BankAccount.accountArr.length;
         for (let i =0;i<size;i++){
             if (key ===this.state.accounts[i].key){
                 BankAccount.accountArr[i].deposit(this.state.depositValue)
                 this.setState({});
-                alert(`Deposited $${this.state.depositValue} to`)
-                console.log(this.state.accounts);
+                alert(`Deposited $${this.state.depositValue} to ${this.state.accounts[i].name}`)
+
             }
-        }
-        
-        
+        }   
+    }
+
+    handleWithdrawTextChange(Text){
+        this.setState({
+            withdrawValue: Text,
+          })
+    }
+
+    handleWithdrawClick(key){
+        let size = BankAccount.accountArr.length;
+        for (let i =0;i<size;i++){
+            if (key ===this.state.accounts[i].key){
+                BankAccount.accountArr[i].withdraw(this.state.withdrawValue)
+                this.setState({});
+                alert(`Withdrew $${this.state.withdrawValue} to ${this.state.accounts[i].name}`)
+                
+            }
+        }   
     }
         
     render(){
@@ -143,11 +172,16 @@ class AcctCtrl extends React.Component{
                 name={this.state.accounts[i].name} 
                 key={this.state.accounts[i].key}
                 balance={this.state.accounts[i].balance}
+
                 handleDepositClick = {()=>this.handleDepositClick(this.state.accounts[i].key)}
                 depositText={this.state.depositValue}
                 handleDespositTextChange = {this.handleDespositTextChange}
-                // withdrawText={this.state.withdrawTextText}
-                // onWithdrawTextChange={this.handleWithdrawTextChange}
+
+                handleWithdrawClick = {()=>this.handleWithdrawClick(this.state.accounts[i].key)}
+                withdrawText={this.state.withdrawValue}
+                handleWithdrawTextChange = {this.handleWithdrawTextChange}
+
+                delete={()=>this.handleDeleteClick(this.state.accounts[i].key)}
                 />)
         }
         
@@ -157,6 +191,7 @@ class AcctCtrl extends React.Component{
                 </div>
                     <div>Highest Account: {this.state.highest}  </div>
                     <div>Lowest Account: {this.state.lowest}</div>
+                    <div>Total of All: ${this.state.total}</div>
                 <div>
                 <div>
                 <button id="idNewAccount" onClick={this.newAccountPress}>New Account</button>

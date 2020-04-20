@@ -1,6 +1,6 @@
 .clAccountCard{
-    
-    display: flex;
+    display: inline-grid;
+    align-content: center;
     flex-direction: row;
     flex-wrap: wrap;
     color:black;
@@ -8,8 +8,7 @@
 
 .AccountCard{
     background-color: aqua;
-    width: 300px;
-    height: 200px;
+    width: 500px;
     border-radius: 10px;
   }
 

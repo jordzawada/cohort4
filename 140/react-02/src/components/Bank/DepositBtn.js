@@ -15,9 +15,8 @@ class DepositBtn extends React.Component{
     render(){
         return(
         <div>
-        {/* <button onClick={()=>this.props.onDepositClick(key)} >Deposit</button> */}
         <button onClick={this.props.onDepositClick} >Deposit</button>
-        <input name="deposit" placeholder="Amount" value={this.props.DepositText} onChange={this.onDepositTextChange} ></input>
+        <input name="deposit" placeholder="Amount" value={this.props.depositText} onChange={this.onDepositTextChange} ></input>
         </div>
         );
     }
