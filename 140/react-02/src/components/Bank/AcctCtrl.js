@@ -83,7 +83,7 @@ export class Account {
             let current = this.accountArr[i].balance;
             if (low> current) {
                 low =current;
-                arrayLowest = i;
+                arrayLowest = this.accountArr[i].name;
             }
         }
         return arrayLowest;
@@ -105,7 +105,8 @@ class AcctCtrl extends React.Component{
         this.state ={
             accounts: BankAccount.accountArr,
             highest: BankAccount.highlightAccountWithHighestValue(),
-            depositValue: ''
+            lowest: BankAccount.highlightAccountWithLowestValue(),
+            depositValue: '',
         }; 
     }
    
@@ -114,16 +115,24 @@ class AcctCtrl extends React.Component{
             this.setState({accounts: BankAccount.accountArr})
     }
 
-    handleDespositTextChange(depositText){
+    handleDespositTextChange(Text){
         this.setState({
-            depositValue: depositText,
+            depositValue: Text,
           })
     }
 
-    handleDepositClick(e){
-        BankAccount.accountArr[0].deposit(this.state.depositValue)
-        this.setState({depositValue: ''})
-        console.log(this.state.depositValue)
+    handleDepositClick(key){
+        let size = BankAccount.accountArr.length;
+        for (let i =0;i<size;i++){
+            if (key ===this.state.accounts[i].key){
+                BankAccount.accountArr[i].deposit(this.state.depositValue)
+                this.setState({});
+                alert(`Deposited $${this.state.depositValue} to`)
+                console.log(this.state.accounts);
+            }
+        }
+        
+        
     }
         
     render(){
@@ -132,8 +141,9 @@ class AcctCtrl extends React.Component{
         for (let i=0;i<size;i++){
             cards.push(<AccountCard 
                 name={this.state.accounts[i].name} 
+                key={this.state.accounts[i].key}
                 balance={this.state.accounts[i].balance}
-                handleDepositClick = {this.handleDepositClick}
+                handleDepositClick = {()=>this.handleDepositClick(this.state.accounts[i].key)}
                 depositText={this.state.depositValue}
                 handleDespositTextChange = {this.handleDespositTextChange}
                 // withdrawText={this.state.withdrawTextText}
@@ -145,7 +155,8 @@ class AcctCtrl extends React.Component{
         <div>
             <div>
                 </div>
-                        <div>Highest Account: {this.state.highest}</div>
+                    <div>Highest Account: {this.state.highest}  </div>
+                    <div>Lowest Account: {this.state.lowest}</div>
                 <div>
                 <div>
                 <button id="idNewAccount" onClick={this.newAccountPress}>New Account</button>

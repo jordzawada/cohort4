@@ -5,7 +5,7 @@ class DepositBtn extends React.Component{
         super(props);
         this.onDepositTextChange = this.onDepositTextChange.bind(this);
         this.state = {
-            
+  
         };
       }
       onDepositTextChange(e) {
@@ -15,8 +15,9 @@ class DepositBtn extends React.Component{
     render(){
         return(
         <div>
-        <button onClick={this.props.onDepositClick}>Deposit</button>
-        <input name="deposit" placeholder="Amount" value={this.props.DepositText} onChange={this.onDepositTextChange}></input>
+        {/* <button onClick={()=>this.props.onDepositClick(key)} >Deposit</button> */}
+        <button onClick={this.props.onDepositClick} >Deposit</button>
+        <input name="deposit" placeholder="Amount" value={this.props.DepositText} onChange={this.onDepositTextChange} ></input>
         </div>
         );
     }

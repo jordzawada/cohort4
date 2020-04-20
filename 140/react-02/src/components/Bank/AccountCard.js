@@ -23,7 +23,7 @@ class AccountCard extends React.Component{
                     {this.props.name}
                     </div>
                     <div>
-                    Balance: {this.props.balance}
+                    Balance: ${this.props.balance} 
                     </div>
                 </div>
                 <div >
@@ -31,6 +31,7 @@ class AccountCard extends React.Component{
                     onDepositClick = {this.props.handleDepositClick} 
                     depositText = {this.props.depositText}
                     onDepositTextChange={this.props.handleDespositTextChange}
+                    key={this.props.key}
                     />
                     <WithdrawBtn />
                 </div>
