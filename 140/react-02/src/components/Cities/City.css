@@ -10,3 +10,8 @@
   text-align: left;
   font-size: 15px;
   }
+
+  .newCityForm{
+    justify-content: right;
+    text-align: right;
+  }

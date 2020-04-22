@@ -40,26 +40,26 @@ class Game extends React.Component {
     }
 
   }
-   bestMove (){
-    let bestScore=-Infinity;
-    let bestMove;
-    for (let i=0;i<3;i++){
-      for (let j=0;j<3;j++){
-        if (this.state.squares[i][j]==='' ){
-          //spot available
-          this.state.squares[i][j]="ai";
-          let score = minimax(this.state.squares);
-          this.state.squares[i][j]='';
-          if(score> bestScore){
-            bestScore=score;
-            bestMove={i,j};  
-          }
-        }
-      }
-    }
-    this.state.squares[bestScore.i][bestScore.j]="ai"
-    this.setState({currentPlayer:"human"});
-  }
+  //  bestMove (){
+  //   let bestScore=-Infinity;
+  //   let bestMove;
+  //   for (let i=0;i<3;i++){
+  //     for (let j=0;j<3;j++){
+  //       if (this.state.squares[i][j]==='' ){
+  //         //spot available
+  //         this.state.squares[i][j]="ai";
+  //         let score = minimax(this.state.squares);
+  //         this.state.squares[i][j]='';
+  //         if(score> bestScore){
+  //           bestScore=score;
+  //           bestMove={i,j};  
+  //         }
+  //       }
+  //     }
+  //   }
+  //   this.state.squares[bestScore.i][bestScore.j]="ai"
+  //   this.setState({currentPlayer:"human"});
+  // }
 
   jumpTo(step) {
     this.setState({
@@ -147,9 +147,9 @@ function calculateWinner(squares) {
 
   
 
-  function minimax(baord){
-    return 1;
-  }
+  // function minimax(baord){
+  //   return 1;
+  // }
 
 
   export default Game;
