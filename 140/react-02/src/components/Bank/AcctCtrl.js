@@ -224,12 +224,7 @@ class AcctCtrl extends React.Component {
           </div>
           <div>{cards}</div>
         </div>
-        {/* <div>
-            this is from the controller array: {BankAccount.accountArr[0].name}
-              </div>
-              <div>
-            this is from the state: {this.state.accounts[0].name}
-              </div> */}
+
       </div>
     );
   }

@@ -9,6 +9,7 @@ import Tabs from './components/Tabs';
 import Game from './components/Game';
 import Bank from './components/Bank/Bank';
 import Cities from './components/Cities/cities';
+import City from './components/citylogo';
 
 let TTTComp = <TTT />;
 let BearComp = <Bear />;
@@ -30,8 +31,11 @@ function App() {
               <div label=<Banklogo />>
                 <Bank />
               </div>
-              <div label={BearComp}>
+              <div label=<City />>
                 <Cities />
+            </div>
+            <div label={BearComp}>
+                <p>holder</p>
             </div>
           </Tabs>
       </div>

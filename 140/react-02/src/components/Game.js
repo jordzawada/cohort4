@@ -4,12 +4,14 @@ import Board from './Board';
 class Game extends React.Component {
   constructor(props) {
     super(props);
+    this.refreshy = this.refreshy.bind(this);
     this.state = {
       history: [{
         squares: Array(9).fill(null),
       }],
       stepNumber: 0,
       xIsNext: true,
+      currentPlayer:"human",
     };
   }
 
@@ -20,14 +22,43 @@ class Game extends React.Component {
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
-    this.setState({
-      history: history.concat([{
-        squares: squares,
-      }]),
-      stepNumber: history.length,
-      xIsNext: !this.state.xIsNext,
-    });
+    
+    if (this.state.currentPlayer==="human") {
+      if(true){ //this.state.sqaures[i]===''
+        squares[i] = this.state.xIsNext ? 'X' : 'O';
+      this.setState({
+        history: history.concat([{
+          squares: squares,
+        }]),
+        stepNumber: history.length,
+        xIsNext: !this.state.xIsNext,
+      });
+        this.currentPlayer="ai";
+        // this.bestMove();
+      }
+      
+    }
+
+  }
+   bestMove (){
+    let bestScore=-Infinity;
+    let bestMove;
+    for (let i=0;i<3;i++){
+      for (let j=0;j<3;j++){
+        if (this.state.squares[i][j]==='' ){
+          //spot available
+          this.state.squares[i][j]="ai";
+          let score = minimax(this.state.squares);
+          this.state.squares[i][j]='';
+          if(score> bestScore){
+            bestScore=score;
+            bestMove={i,j};  
+          }
+        }
+      }
+    }
+    this.state.squares[bestScore.i][bestScore.j]="ai"
+    this.setState({currentPlayer:"human"});
   }
 
   jumpTo(step) {
@@ -36,6 +67,18 @@ class Game extends React.Component {
       xIsNext: (step % 2) === 0,
     });
   }
+
+  refreshy(){
+    this.setState({
+      history: [{
+      squares: Array(9).fill(null),
+    }],
+    stepNumber: 0,
+    xIsNext: true,
+    currentPlayer:"human",
+    })
+  }
+
     render() {
       const history = this.state.history;
       const current = history[this.state.stepNumber];
@@ -66,6 +109,7 @@ class Game extends React.Component {
         <div className="game">
           <div className="game-board">
             <Board 
+            onNewGame={this.refreshy}
             squares={current.squares}
             onClick={(i) => this.handleClick(i)} 
             />
@@ -100,4 +144,12 @@ function calculateWinner(squares) {
     }
     return null;
   }
+
+  
+
+  function minimax(baord){
+    return 1;
+  }
+
+
   export default Game;

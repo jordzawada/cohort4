@@ -6,14 +6,14 @@ import AcctCtrl from './AcctCtrl.js';
 class Bank extends React.Component{
     constructor(){
         super();
-        this.handleHighest = this.handleHighest.bind(this);
+        // this.handleHighest = this.handleHighest.bind(this);
         this.state={
 
         }
     }
-    handleHighest(e){
-        this.setState({highest: e.target.value});
-    }
+    // handleHighest(e){
+    //     this.setState({highest: e.target.value});
+    // }
     
     render(){   
 

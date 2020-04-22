@@ -1,14 +1,15 @@
 import React from 'react';
-//oncomponeentdidmount do your fetch stuff
+import CityCtrl from "./CityCtrl.js";
+import "./City.css";
 
-// this should be the component that displays the buttons and population.
+
 class Cities extends React.Component{
     
     render(){    
         return(
             <div>
                  <h1>Cities</h1>
-
+                    <CityCtrl />
             </div>
         );    
     

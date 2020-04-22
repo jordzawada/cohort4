@@ -68,6 +68,10 @@ ol, ul {
   justify-content: center;
 }
 
+.idGameWin{
+  background-color: chartreuse;
+}
+
 .game-info {
   margin-left: 20px;
   align-items: center;

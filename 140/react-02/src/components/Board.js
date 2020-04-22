@@ -12,6 +12,8 @@ class Board extends React.Component {
         />
         );
     }
+
+    
   
     render() {
       return (
@@ -30,6 +32,9 @@ class Board extends React.Component {
             {this.renderSquare(6)}
             {this.renderSquare(7)}
             {this.renderSquare(8)}
+          </div>
+          <div>
+            <button onClick={this.props.onNewGame}> New Game</button>
           </div>
         </div>
       );
