@@ -149,7 +149,7 @@ class CityCtrl extends React.Component {
   }
 
   handleNewCityClick() {
-    console.log("clicked");
+    // console.log("clicked");
     this.setState({newCityForm:true})
     //   this.postData(url+"add",{key:2, name: "Jordan"})
     //   console.log("added");
@@ -157,6 +157,7 @@ class CityCtrl extends React.Component {
 
   handleNewCitySumbit(){
     this.setState({newCityForm:false})
+
   }
   componentDidMount() {
     this.makeCommunity();

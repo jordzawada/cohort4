@@ -76,11 +76,11 @@ class accountController {
     return arrayHighest;
   }
   highlightAccountWithLowestValue() {
-    let arrayLowest = 0;
+    let arrayLowest = "blank";
     for (let i = 0; i < this.accountArr.length; i++) {
       let low = this.accountArr[0].balance;
       let current = this.accountArr[i].balance;
-      if (low > current) {
+      if (low >= current) {
         low = current;
         arrayLowest = this.accountArr[i].name;
       }
@@ -119,7 +119,6 @@ class AcctCtrl extends React.Component {
   newAccountPress() {
     BankAccount.addAccount();
     this.setState({ accounts: BankAccount.accountArr });
-    console.log(BankAccount);
   }
 
   handleDespositTextChange(Text) {
@@ -145,7 +144,10 @@ class AcctCtrl extends React.Component {
     for (let i = 0; i < size; i++) {
       if (key === this.state.accounts[i].key) {
         BankAccount.renameAccount(key, newname);
-        this.setState({ name: "" });
+        this.setState({ name: "",
+        highest: BankAccount.highlightAccountWithHighestValue(),
+        lowest: BankAccount.highlightAccountWithLowestValue(),
+       });
       }
     }
   }
@@ -159,6 +161,12 @@ class AcctCtrl extends React.Component {
         alert(
           `Deposited $${this.state.depositValue} to ${this.state.accounts[i].name}`
         );
+        this.setState({
+          highest: BankAccount.highlightAccountWithHighestValue(),
+          lowest: BankAccount.highlightAccountWithLowestValue(),
+          total: BankAccount.totalAccounts(),
+        });
+        
       }
     }
   }
@@ -177,7 +185,13 @@ class AcctCtrl extends React.Component {
         this.setState({ withdrawValue: "" });
         alert(
           `Withdrew $${this.state.withdrawValue} to ${this.state.accounts[i].name}`
+          
         );
+        this.setState({
+          highest: BankAccount.highlightAccountWithHighestValue(),
+          lowest: BankAccount.highlightAccountWithLowestValue(),
+          total: BankAccount.totalAccounts(),
+        });
       }
     }
   }

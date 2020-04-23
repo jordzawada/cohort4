@@ -6,19 +6,47 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import CAcities from "./ca.json";
 
-function NewCityForm() {
-    const [open] = React.useState(true);
-    const [setOpen] = React.useState(false);
+const randomCities= CAcities;
+
+//add in newCitySumbit
+function NewCityForm({newCitySumbit}) {
+    const [open, setOpen] = React.useState(true);
+
+    let [cityName, setName]= React.useState("");
+    let [cityLat, setLat]= React.useState("");
+    let [cityLong, setLong]= React.useState("");
+    let [cityPop, setPop]= React.useState("");
   
-    const handleClickOpen = () => {
-      setOpen(true);
+    // const handleClickOpen = () => {
+    //   setOpen(true);
 
-    };
+    // };
   
     const handleClose = () => {
       setOpen(false);
+      newCitySumbit();
     };
+
+    const handleRandom =()=>{
+      let x = Math.round(Math.random()*247);
+      let randomCity=randomCities[x];
+      cityName= setName(randomCity.city);
+      cityLat=setLat(randomCity.lat);
+      cityLong=setLong(randomCity.lng);
+      cityPop=setPop(randomCity.population);
+    }
+
+    const handleAdd =() =>{
+      console.log("added");
+
+      cityName= setName("");
+      cityLat=setLat("");
+      cityLong=setLong("");
+      cityPop=setPop("");
+      
+    }
   
     return (
       <div>
@@ -26,26 +54,58 @@ function NewCityForm() {
           Open form dialog
         </Button> */}
         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-          <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+          <DialogTitle id="form-dialog-title">Add City</DialogTitle>
           <DialogContent>
             <DialogContentText>
               Fill in City Data please.
             </DialogContentText>
             <TextField
+            variant="filled"
               autoFocus
               margin="dense"
               id="name"
-              label="Email Address"
-              type="email"
-              fullWidth
+              label="City Name"
+              type="text"
+              value={cityName}
+
+            />
+            <TextField
+            variant="filled"
+              autoFocus
+              margin="dense"
+              id="lat"
+              label="Latitude"
+              type="text"
+              value={cityLat}
+            />
+            <TextField
+            variant="filled"
+              autoFocus
+              margin="dense"
+              id="long"
+              label="Longitude"
+              type="text"
+              value={cityLong}
+            />
+            <TextField
+            variant="filled"
+              autoFocus
+              margin="dense"
+              id="population"
+              label="Population"
+              type="text"
+              value={cityPop}
             />
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="primary">
               Cancel
             </Button>
-            <Button onClick={handleClose} color="primary">
-              Subscribe
+            <Button onClick={handleRandom} color="primary">
+              Add Random Data
+            </Button>
+            <Button onClick={handleAdd} color="primary">
+              Add
             </Button>
           </DialogActions>
         </Dialog>
