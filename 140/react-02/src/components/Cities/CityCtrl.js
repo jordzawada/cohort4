@@ -1,5 +1,6 @@
 import React from "react";
 import NewCityForm from "./NewCityForm";
+import CityCard from "./CityCard";
 
 
 let counter1 = 1;
@@ -101,21 +102,24 @@ export class City {
 }
 
 let Community1 = new Community();
-
 let url = "http://127.0.0.1:5000/";
+
 class CityCtrl extends React.Component {
   constructor(props) {
     super(props);
     this.postData = this.postData.bind(this);
     this.handleNewCityClick = this.handleNewCityClick.bind(this);
     this.handleNewCitySumbit = this.handleNewCitySumbit.bind(this);
+    this.makeCards = this.makeCards.bind(this);
+
     this.state = {
       highest: "highest",
       northern: "northern",
       southern: "southern",
       total: "total",
       newCityForm: false,
-
+      Communities: {},
+      cards: [],
     };
   }
 
@@ -143,9 +147,11 @@ class CityCtrl extends React.Component {
     let data = await this.postData(url + "all");
     let size = data.length;
     for (let i = 0; i < size; i++) {
-      Community1.createCity(data[i].name);
+      Community1.createCity(data[i].Name,data[i].Latitude,data[i].Longitude,data[i].Population);
     }
-    console.log(Community1);
+    this.setState({
+      Communities: Community1,
+    })
   }
 
   handleNewCityClick() {
@@ -155,19 +161,50 @@ class CityCtrl extends React.Component {
     //   console.log("added");
   }
 
-  handleNewCitySumbit(){
-    this.setState({newCityForm:false})
+  handleNewCitySumbit(name,lat,long,pop){
+    Community1.createCity(name,lat,long,pop);
+    let size = Community1.data.length;
+    for (let i=0;i<size;i++){
+      this.postData(url+"add",Community1.data[i])
+    }
+    console.log(this.state.Communities);
+    this.setState({newCityForm:false,
+      Communities: Community1
+    })
 
   }
-  componentDidMount() {
+
+
+ componentDidMount() {
     this.makeCommunity();
   }
   componentWillUnmount() {
     Community1 = new Community();
   }
 
+  componentDidUpdate(prevProps,prevState,SS){
+    if (prevState.cards === this.state.cards){ 
+      this.makeCards();  
+    }
+  }
 
-  render() {
+  async makeCards (){
+    let length = Community1.data.length;
+    let newCards=[];
+    for (let i=0;i<length;i++){
+      newCards.push(
+        <CityCard
+        
+
+        />
+      );
+    }
+    await this.setState({cards: newCards})
+  } 
+
+
+
+ render() {
     let newCityButton;
     if (this.state.newCityForm===true){
         newCityButton=<NewCityForm 
@@ -192,7 +229,7 @@ class CityCtrl extends React.Component {
           <div>
             {newCityButton}
           </div>
-          {/* <div>{cards}</div> */}
+          <div>{this.state.cards}</div>
         </div>
       </div>
     );

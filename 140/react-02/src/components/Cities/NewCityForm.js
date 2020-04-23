@@ -21,12 +21,11 @@ function NewCityForm({newCitySumbit}) {
   
     // const handleClickOpen = () => {
     //   setOpen(true);
-
     // };
   
     const handleClose = () => {
       setOpen(false);
-      newCitySumbit();
+      
     };
 
     const handleRandom =()=>{
@@ -39,13 +38,16 @@ function NewCityForm({newCitySumbit}) {
     }
 
     const handleAdd =() =>{
-      console.log("added");
-
+      if (cityName!==""){
+        newCitySumbit(cityName,cityLat,cityLong,cityPop);
       cityName= setName("");
       cityLat=setLat("");
       cityLong=setLong("");
       cityPop=setPop("");
-      
+      handleClose();
+      } else {
+        alert("add a name at least");
+      }
     }
   
     return (

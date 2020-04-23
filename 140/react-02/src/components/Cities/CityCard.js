@@ -12,7 +12,7 @@ class CityCard extends React.Component {
         <div className="clCityCard">
           <div>
             <div id="idCityName">Holder</div>
-            <div>hodler</div>
+            <div>holder</div>
           </div>
           <div>
             
