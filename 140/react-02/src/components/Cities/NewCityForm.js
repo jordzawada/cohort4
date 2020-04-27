@@ -11,7 +11,7 @@ import CAcities from "./ca.json";
 const randomCities= CAcities;
 
 //add in newCitySumbit
-function NewCityForm({newCitySumbit}) {
+function NewCityForm({newCitySumbit, newCityClose}) {
     const [open, setOpen] = React.useState(true);
 
     let [cityName, setName]= React.useState("");
@@ -25,11 +25,11 @@ function NewCityForm({newCitySumbit}) {
   
     const handleClose = () => {
       setOpen(false);
-      
+      newCityClose();
     };
 
     const handleRandom =()=>{
-      let x = Math.round(Math.random()*247);
+      let x = Math.round(Math.random()*246);
       let randomCity=randomCities[x];
       cityName= setName(randomCity.city);
       cityLat=setLat(randomCity.lat);
@@ -69,6 +69,7 @@ function NewCityForm({newCitySumbit}) {
               label="City Name"
               type="text"
               value={cityName}
+              onChange={e => setName(e.target.value)}
 
             />
             <TextField
@@ -79,6 +80,7 @@ function NewCityForm({newCitySumbit}) {
               label="Latitude"
               type="text"
               value={cityLat}
+              onChange={e => setLat(e.target.value)}
             />
             <TextField
             variant="filled"
@@ -88,6 +90,7 @@ function NewCityForm({newCitySumbit}) {
               label="Longitude"
               type="text"
               value={cityLong}
+              onChange={e => setLong(e.target.value)}
             />
             <TextField
             variant="filled"
@@ -97,6 +100,7 @@ function NewCityForm({newCitySumbit}) {
               label="Population"
               type="text"
               value={cityPop}
+              onChange={e => setPop(e.target.value)}
             />
           </DialogContent>
           <DialogActions>

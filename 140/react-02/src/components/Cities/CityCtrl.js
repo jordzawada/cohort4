@@ -19,6 +19,7 @@ class Community {
       if (this.data[i].Latitude > mostNorth) {
         mostNorth = this.data[i].Latitude;
         mostNorthName = this.data[i].Name;
+        
       }
     }
     return mostNorthName;
@@ -110,18 +111,19 @@ class CityCtrl extends React.Component {
     this.postData = this.postData.bind(this);
     this.handleNewCityClick = this.handleNewCityClick.bind(this);
     this.handleNewCitySumbit = this.handleNewCitySumbit.bind(this);
+    this.handleNewCityClose = this.handleNewCityClose.bind(this);
     this.makeCards = this.makeCards.bind(this);
 
     this.state = {
-      highest: "highest",
-      northern: "northern",
-      southern: "southern",
-      total: "total",
+      northern: Community1.getMostNorthern(),
+      southern: Community1.getMostSouthern() ,
+      total: Community1.getPopulation(),
       newCityForm: false,
       Communities: {},
       cards: [],
     };
   }
+
 
   async postData(inputurl, data = {}) {
     const response = await fetch(inputurl, {
@@ -151,6 +153,9 @@ class CityCtrl extends React.Component {
     }
     this.setState({
       Communities: Community1,
+      northern: Community1.getMostNorthern(),
+      southern: Community1.getMostSouthern() ,
+      total: Community1.getPopulation(),
     })
   }
 
@@ -167,18 +172,59 @@ class CityCtrl extends React.Component {
     for (let i=0;i<size;i++){
       this.postData(url+"add",Community1.data[i])
     }
-    console.log(this.state.Communities);
     this.setState({newCityForm:false,
-      Communities: Community1
+      Communities: Community1,
+      northern: Community1.getMostNorthern(),
+      southern: Community1.getMostSouthern() ,
+      total: Community1.getPopulation(),
     })
+  }
+   handleNewCityClose(){
+    this.setState({newCityForm:false})
+   }
 
+  handleAddPopulationClick=(key,amount)=>{
+    
+    let size = Community1.data.length;
+    for (let i=0;i<size;i++){
+      if (Community1.data[i].key===key){
+        Community1.data[i].movedIn(Number(amount));
+      }
+    }
+    this.setState({newCityForm:false,
+      Communities: Community1,
+      northern: Community1.getMostNorthern(),
+      southern: Community1.getMostSouthern() ,
+      total: Community1.getPopulation(),
+    })
   }
 
+
+  handleSubtractPopulationClick=(key,amount)=>{
+    let size = Community1.data.length;
+    for (let i=0;i<size;i++){
+      if (Community1.data[i].key===key){
+        Community1.data[i].movedOut(Number(amount));
+      }
+    }
+    this.setState({newCityForm:false,
+      Communities: Community1,
+      northern: Community1.getMostNorthern(),
+      southern: Community1.getMostSouthern() ,
+      total: Community1.getPopulation(),
+    })
+  }
 
  componentDidMount() {
     this.makeCommunity();
   }
   componentWillUnmount() {
+    this.postData(url+"clear");
+    let size = Community1.data.length;
+    for (let i=0;i<size;i++){
+      this.postData(url+"add",Community1.data[i])
+    }
+    counter1=1;
     Community1 = new Community();
   }
 
@@ -188,14 +234,44 @@ class CityCtrl extends React.Component {
     }
   }
 
+  handleDelete=(key)=>{
+    Community1.deleteCity(key);
+    this.setState({newCityForm:false,
+      Communities: Community1,
+      northern: Community1.getMostNorthern(),
+      southern: Community1.getMostSouthern() ,
+      total: Community1.getPopulation(),
+    })
+  }
+
+  handleSave=()=>{
+    let size = Community1.data.length;
+    this.postData(url+"clear");
+    for (let i=0;i<size;i++){
+      this.postData(url+"add",Community1.data[i])
+    }
+    
+  }
+
   async makeCards (){
     let length = Community1.data.length;
     let newCards=[];
     for (let i=0;i<length;i++){
       newCards.push(
         <CityCard
-        
+        cityName={Community1.data[i].Name}
+        cityLat={Community1.data[i].Latitude}
+        cityLong={Community1.data[i].Longitude}
+        cityPop={Community1.data[i].Population}
+        cityType={Community1.data[i].howBig()}
 
+        addPopulation={this.handleAddPopulationClick}
+        subtractPopulation={this.handleSubtractPopulationClick}
+
+        key={Community1.data[i].key}
+        keys={Community1.data[i].key}
+
+        delete={this.handleDelete}
         />
       );
     }
@@ -209,6 +285,7 @@ class CityCtrl extends React.Component {
     if (this.state.newCityForm===true){
         newCityButton=<NewCityForm 
         newCitySumbit={this.handleNewCitySumbit}
+        newCityClose={this.handleNewCityClose}
         />
     } else {
     newCityButton=<button id="idNewCity" onClick={this.handleNewCityClick}>
@@ -218,18 +295,18 @@ class CityCtrl extends React.Component {
 
     return (
       <div>
-        <div></div>
-        <div id="idHeaderInfo">
-          Highest Population City: {this.state.highest}{" "}
-        </div>
         <div id="idHeaderInfo">Most Northern City: {this.state.northern}</div>
         <div id="idHeaderInfo">Most Southern City: {this.state.southern}</div>
         <div id="idHeaderInfo">Total Population of All: {this.state.total}</div>
         <div>
-          <div>
-            {newCityButton}
+          
+         
+          <div >
+            <div id="idSave"><button id="idSaveBtn" onClick={this.handleSave} >Save</button></div>  {newCityButton}
           </div>
-          <div>{this.state.cards}</div>
+          <div> <br/></div>
+          <div> <hr/></div>
+          <div id="idCardDiv">{this.state.cards}</div>
         </div>
       </div>
     );
