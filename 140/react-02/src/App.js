@@ -10,6 +10,7 @@ import Game from './components/Game';
 import Bank from './components/Bank/Bank';
 import Cities from './components/Cities/cities';
 import City from './components/citylogo';
+import LinkedList from './components/LinkedList/LinkedList.js';
 
 let TTTComp = <TTT />;
 let BearComp = <Bear />;
@@ -35,7 +36,7 @@ function App() {
                 <Cities />
             </div>
             <div label={BearComp}>
-                <p>holder</p>
+                <LinkedList />
             </div>
           </Tabs>
       </div>

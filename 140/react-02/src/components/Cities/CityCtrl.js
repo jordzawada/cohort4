@@ -121,6 +121,7 @@ class CityCtrl extends React.Component {
       newCityForm: false,
       Communities: {},
       cards: [],
+      loading: false,
     };
   }
 
@@ -244,13 +245,17 @@ class CityCtrl extends React.Component {
     })
   }
 
+  afterTime =() =>{
+    this.setState({loading: false});
+  }
   handleSave=()=>{
     let size = Community1.data.length;
     this.postData(url+"clear");
     for (let i=0;i<size;i++){
       this.postData(url+"add",Community1.data[i])
     }
-    
+    this.setState({loading: true})
+    setTimeout(this.afterTime ,800)
   }
 
   async makeCards (){
@@ -290,9 +295,11 @@ class CityCtrl extends React.Component {
     } else {
     newCityButton=<button id="idNewCity" onClick={this.handleNewCityClick}>
     New City
-  </button>    
+  </button>  
     }
 
+
+    if (this.state.loading===false) {
     return (
       <div>
         <div id="idHeaderInfo">Most Northern City: {this.state.northern}</div>
@@ -310,6 +317,11 @@ class CityCtrl extends React.Component {
         </div>
       </div>
     );
+    } else {
+      return(
+      <div> Saving...</div>
+      )
+    }
   }
 }
 
