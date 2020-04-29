@@ -1,18 +1,24 @@
- class LinkedListNode {
-    constructor(data) {
+ class ListNode {
+    constructor(data,amount) {
         this.data = data;
         this.next = null;
+        this.amount=amount;
+    }
+    show(){
+      // console.log(`subject: ${this.subject}, amount: ${this.amount}`);
+      return [this.data,this.amount]
     }
 }
 
 class LinkedList {
   constructor() {
     this.head = null;
+    this.position=null;
   }
 
-  add(data) {
+  insert(data,amount) {
     // create a new node
-    const newNode = new LinkedListNode(data);
+    const newNode = new ListNode(data,amount);
     //special case: no items in the list yet
     if (this.head === null) {
       // just set the head to the new node
@@ -41,18 +47,36 @@ class LinkedList {
         i++;
       }
       // return the data if `current` isn't null
-      return current !== null ? current.data : undefined;
+      return current !== null ? [current.data,current.amount] : undefined;
     } else {
       return undefined;
     }
   }
-  remove(index) {
-    
+  getNext(){
+
+  }
+  getPrev(){
+
+  }
+  getLast(){
+    let i=-1;
+    let current = this.head;
+    while (current !== null) {
+      current = current.next;
+      i++;
+    }
+    this.position=i;
+    return i;
+  }
+  getFirst(){
+
+  }
+
+  delete(index) {  
     // special cases: empty list or invalid `index`
     if ((this.head === null) || (index < 0)) {
         throw new RangeError(`Index ${index} does not exist in the list.`);
     }
-
     // special case: removing the first node
     if (index === 0) {
         // temporary store the data from the node

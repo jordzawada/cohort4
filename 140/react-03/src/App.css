@@ -37,6 +37,15 @@
   }
 }
 
+#idListCard{
+  background-color: aqua;
+  height: 50px;
+  width: 100px;
+  border-radius: 5px;
+  border: solid black;
+  text-align: center;
+}
+
 
 
 
