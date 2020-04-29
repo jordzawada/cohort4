@@ -1,0 +1,28 @@
+.Bear-logo {
+    height: 20vmin;
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .Bear-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+
+@keyframes Bear-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .Bear:hover {
+   filter: invert(0.1);
+  }
+
+  .Bear:active {
+      filter: sepia(0.4);
+      transform: scale(1.1);
+  }

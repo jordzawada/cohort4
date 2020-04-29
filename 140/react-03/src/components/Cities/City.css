@@ -1,0 +1,53 @@
+button {
+  height: 34px;
+}
+h2{
+  text-align: center;
+}
+
+#idCardDiv{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-grow: 1 1 1 1;
+}
+
+  #idNewCity{
+    float: right;
+    height: 30px;
+    border-radius: 5px;
+  }
+
+
+  #idSave{
+    text-align: center;
+  }
+
+  #idSaveBtn {
+    height: 30px;
+    border-radius: 5px;
+}
+  
+  #idHeaderInfo{
+  color: aqua;
+  text-align: left;
+  font-size: 15px;
+  }
+
+  .newCityForm{
+    justify-content: right;
+    text-align: right;
+  }
+
+  .clCityCard{
+    color: lightgrey;
+    height: auto;
+    /* width: 350px; */
+    border: solid black;
+    border-radius: 8px;
+    margin: 10px;
+    /* background-color: aqua; */
+  }
+
+  
