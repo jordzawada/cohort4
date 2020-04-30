@@ -52,12 +52,12 @@ class LinkedList {
       return undefined;
     }
   }
-  getNext(){
+  // getNext(){
 
-  }
-  getPrev(){
+  // }
+  // getPrev(){
 
-  }
+  // }
   getLast(){
     let i=-1;
     let current = this.head;
@@ -69,10 +69,42 @@ class LinkedList {
     return i;
   }
   getFirst(){
-
+    this.position=0;
   }
+  getAt (index){
+    let counter = 0;
+    let node = this.head;
+    while (node) {
+        if (counter === index) {
+           return node;
+        }
+        counter++;
+        node = node.next;
+    }
+    return null;
+}
+  insertAfter(i,data,amount){
+          console.log("inserted after "+i);
+          // if the list is empty i.e. head = null
+          if (!this.head) {
+            this.head = new ListNode(data,amount);
+            return;
+        }
+      // if new node needs to be inserted at the front of the list i.e. before the head. 
+        // if (i === 0) {
+        //   this.next = new ListNode(data, amount);
+        //   return;
+        // }
+      // else, use getAt() to find the previous node.
+        const previous = this.getAt(i);
+        let newNode = new ListNode(data, amount);
+        newNode.next = previous.next;
+        previous.next = newNode;       
 
-  delete(index) {  
+        return this.head
+      }
+
+    delete(index) {  
     // special cases: empty list or invalid `index`
     if ((this.head === null) || (index < 0)) {
         throw new RangeError(`Index ${index} does not exist in the list.`);
