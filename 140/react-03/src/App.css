@@ -72,8 +72,15 @@
 
 #idInnerIFO{
   background-color:grey;
-  width: 300px;
+  width: 350px;
   border-radius: 7px;
+}
+
+#idIFOCard {
+  width: 200px;
+  background-color: indigo;
+  text-align: center;
+  margin: 10px;
 }
 
 
