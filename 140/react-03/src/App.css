@@ -65,7 +65,16 @@
 #idPrevNext{
   float: right;
 }
+#idIFO{
+  display: flex;
+  justify-content: space-evenly;
+}
 
+#idInnerIFO{
+  background-color:grey;
+  width: 300px;
+  border-radius: 7px;
+}
 
 
 

@@ -11,6 +11,8 @@ import Bank from './components/Bank/Bank';
 import Cities from './components/Cities/cities';
 import City from './components/citylogo';
 import LinkedList from './components/LinkedList/LinkedList.js';
+import IFOApp from './components/IFO/IFOApp.js';
+import IFO from './components/IFO.js';
 
 let TTTComp = <TTT />;
 let BearComp = <Bear />;
@@ -38,6 +40,9 @@ function App() {
             <div label={BearComp}>
                 <LinkedList />
             </div>
+            <div label=<IFO />>
+            <IFOApp />
+          </div>
           </Tabs>
       </div>
       </div>  

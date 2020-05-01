@@ -10,8 +10,14 @@ let linkedList1= new LinkedList();
 
 function LinkedListApp() {
     let [list, setList] = React.useState([]);
-    const [position, setPosition] = React.useState(0);
+    let [position, setPosition] = React.useState(0);
     let [count, setCount] = React.useState(1);
+    let [total, setTotal] = React.useState(0);
+
+    const getTotal=()=>{
+        let x= linkedList1.getTotal();
+        setTotal(x);
+    }
     
     const handleGetPosition=(i)=>{
         setPosition(i);
@@ -68,12 +74,13 @@ function LinkedListApp() {
         linkedList1.insert(count,count*100);
         setCount(count+1);
         makeList();
+        getTotal();
     }
-    
         return(
             <div>
                 <h1>Linked List</h1>
                 <h1>Position: {position} Selected</h1>
+                <h1>Total Amount: {total}</h1>
                 <div id="idPrevNext">
                     <button onClick={clickPrev}>Previous</button>
                     <button onClick={clickNext}>Next</button>
@@ -89,5 +96,4 @@ function LinkedListApp() {
             </div>
         );
     }
-{/* <button onClick={makeList}>Load</button> */}
 export default LinkedListApp;

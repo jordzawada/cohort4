@@ -84,7 +84,7 @@ class LinkedList {
     return null;
 }
   insertAfter(i,data,amount){
-          console.log("inserted after "+i);
+          // console.log("inserted after "+i);
           // if the list is empty i.e. head = null
           if (!this.head) {
             this.head = new ListNode(data,amount);
@@ -142,7 +142,20 @@ class LinkedList {
     }
     // if node wasn't found, throw an error
     throw new RangeError(`Index ${index} does not exist in the list.`);
-}
+  }
+  getTotal(){
+    let total=0;
+    let current = this.head;
+      while (current !== null) {
+        total= total+current.amount
+        current = current.next;
+        
+      }
+  
+    return total;
+  }
+
+
 }
 
 export default LinkedList;
