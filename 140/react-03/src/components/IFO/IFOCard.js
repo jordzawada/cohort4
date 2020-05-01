@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 
 function IFOCard(props) {
@@ -6,7 +6,7 @@ function IFOCard(props) {
     
         return(
             <div id="idIFOCard">
-                
+            
                {props.name}
                 
             </div>

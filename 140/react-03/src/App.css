@@ -74,13 +74,22 @@
   background-color:grey;
   width: 350px;
   border-radius: 7px;
+  padding: 10px;
 }
 
 #idIFOCard {
+  color: lightgrey;
   width: 200px;
+  height: 50px;
+  border: solid black 4px;
+  border-radius: 7px;
   background-color: indigo;
   text-align: center;
-  margin: 10px;
+  margin: auto;
+}
+
+#idRandName{
+ border-radius: 5px;
 }
 
 
