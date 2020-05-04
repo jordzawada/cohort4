@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import LinkedList from './LinkedListObjects';
 import ListCard from './ListCard';
 
+
 let linkedList1= new LinkedList();
 // linkedList1.insert("a",100);
 // linkedList1.insert("b",200);

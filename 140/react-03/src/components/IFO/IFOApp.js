@@ -5,6 +5,7 @@ import IFOhighlight from './IFOhighlight.js';
 import WFWeapons from "./WFweapons.json";
 
 
+
 let ifo= new IFO ();
 
 
@@ -37,8 +38,10 @@ function IFOApp() {
         }
     }
     const handleRemoveFIFOClick=()=>{
+        if(ifo.fifo.length-1!==-1) {
             last=setLast(<IFOCard name={ifo.fifo[0].name} />)
             ifo.removeFIFO();
+        }
             renderFIFO();  
     }
 
@@ -51,8 +54,11 @@ function IFOApp() {
     }
     const handleRemoveLIFOClick=()=>{
         let size = ifo.lifo.length-1;
-        last=setLast(<IFOCard name={ifo.lifo[size].name} />)
-        ifo.removeLIFO();
+        if(size!==-1){
+            last=setLast(<IFOCard name={ifo.lifo[size].name} />)
+            ifo.removeLIFO();
+        }
+        
         renderLIFO();  
 }
 
@@ -61,7 +67,7 @@ function IFOApp() {
         let LIFOarr=[];
         let size=ifo.lifo.length;
         for (let i=0;i<size;i++){
-            if(i!=size-1){
+            if(i!==size-1){
             LIFOarr.push(<IFOCard name={ifo.lifo[i].name} key={ifo.lifo[i].key}/>)
             } else {
                 LIFOarr.push(<IFOhighlight name={ifo.lifo[i].name} key={ifo.lifo[i].key}/>)
@@ -73,7 +79,7 @@ function IFOApp() {
         let FIFOarr=[];
         let size=ifo.fifo.length;
             for (let i=0;i<size;i++){
-                if(i!=size-1){
+                if(i!==size-1){
                 FIFOarr.push(<IFOCard name={ifo.fifo[i].name} key={ifo.fifo[i].key}/>)
                 } else {
                     FIFOarr.push(<IFOhighlight name={ifo.fifo[i].name} key={ifo.fifo[i].key}/>)
