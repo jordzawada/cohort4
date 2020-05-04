@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import IFO from "./IFOobjects.js";
 import IFOApp from "./IFOApp.js";
+import IFOCard from './IFOCard.js';
 
 test("POJO tests",()=>{
   const list1 = new IFO();
@@ -33,8 +34,25 @@ test("POJO tests",()=>{
 });
 
 test("React tests",()=>{
-  render(<IFOApp></IFOApp >)
-  // screen.debug()
+ 
+  // const myCountFunc = jest.fn();
+
+  //Test that the app renders HTML
+  let {queryByText} = render(<IFOApp></IFOApp >);
+  // console.log(container);
+  let test1 = queryByText('FIFO');
+  console.log(test1);
+  
+  expect(test1.innerHTML).toBe('FIFO');
+  
+  // screen.debug();
   // expect().toBe();
+
+  // test that buttons are made.
+  const el = screen.getByText(/Random Name/i);
+  expect(el.id).toBe("idRandName")
+  
+  // fireEvent.click(el);
+  //   console.log(myCountFunc.mock.calls.length);
 
 });

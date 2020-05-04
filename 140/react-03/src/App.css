@@ -92,5 +92,13 @@
  border-radius: 5px;
 }
 
+#idLIFO{
+  float: right;
+}
+
+#idRem{
+  text-align: center;
+}
+
 
 
