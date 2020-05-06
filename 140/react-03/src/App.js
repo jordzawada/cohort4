@@ -16,11 +16,13 @@ import IFO from "./components/IFO.js";
 import Settings from "./components/Settings/Settings.js";
 import SettingsLabel from "./components/SettingsLabel.js";
 
+
 let TTTComp = <TTT />;
 let BearComp = <Bear />;
 function App() {
   return (
     <div>
+      
       <div>
         <h1>React</h1>
         <Tabs>
