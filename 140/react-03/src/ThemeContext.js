@@ -12,9 +12,7 @@ class ThemeContextProvider extends Component {
   constructor(props) {
     super(props);
 
-    this.toggleTheme = () => {
-      console.log("clicked");
-  
+    this.toggleFontColour = () => {
       this.setState(state => {
         const newTheme= state.theme === "Day" ? "Night" : "Day";
         return {
@@ -25,7 +23,7 @@ class ThemeContextProvider extends Component {
 
     this.state = {
       theme: "Day",
-      toggleTheme: this.toggleTheme,
+      toggleFontColour: this.toggleFontColour,
     };
   }
 

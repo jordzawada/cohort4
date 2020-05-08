@@ -1,21 +1,38 @@
 import React, { useEffect } from "react";
-import {ThemeContextConsumer} from "../../ThemeContext.js";
-
+import { ThemeContextConsumer } from "../../ThemeContext.js";
+import { SketchPicker } from "react-color";
 
 function Settings(props) {
+
+  const context = ThemeContextConsumer;
+  const [color, setColor] = React.useState();
+
+  const handleChangeComplete = (color) => {
+    color = setColor(color);
+  };
+
   return (
-    <ThemeContextConsumer>
-      {context => (
+    // <ThemeContextConsumer>
+      
         <div>
           <h1>Theme Settings </h1>
-            <p>{context.theme}</p>
-            <button onClick={context.toggleTheme}>Click</button>
+          <p>{context.theme}</p>
+          <button onClick={context.toggleFontColour}>Click</button>
           <hr />
           <li>Text Color</li>
+          <div id="idColorPicker">
+            <SketchPicker
+              color={color}
+              onChangeComplete={handleChangeComplete}
+            />
+          </div>
           <li>Font</li>
         </div>
-      )}
-    </ThemeContextConsumer>
+      
+    //  </ThemeContextConsumer> 
   );
 }
 export default Settings;
+
+//  {(context) => ( 
+// )}
