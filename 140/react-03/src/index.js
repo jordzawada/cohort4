@@ -3,14 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {ThemeContextProvider} from './ThemeContext.js';
+// import {ThemeContextProvider} from './ThemeContext.js';
+import  { time }  from './ThemeContext.js';
+// 
+
 
 ReactDOM.render(
   
   <React.StrictMode>
-    <ThemeContextProvider >
+    {/* <ThemeContext.Provider > */}
     <App />
-    </ThemeContextProvider>
+    {/* </ThemeContext.Provider> */}
   </React.StrictMode>
   ,
   document.getElementById('root')

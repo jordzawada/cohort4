@@ -3,6 +3,7 @@ import IFO from './IFOobjects.js';
 import IFOCard from './IFOCard.js';
 import IFOhighlight from './IFOhighlight.js';
 import WFWeapons from "./WFweapons.json";
+import { time }  from '../../ThemeContext.js';
 
 
 
@@ -105,7 +106,7 @@ function IFOApp() {
     
         return(
             <div id="idIFO">
-                
+                <p>{time.time1}</p>
                <div id="idInnerIFO"> 
                <h1>FIFO</h1> 
                <p>First In, First Out.</p>

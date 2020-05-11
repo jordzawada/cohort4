@@ -5,36 +5,29 @@
 // export default ColorContext;
 
 import React, { Component } from "react";
-const { Provider, Consumer } = React.createContext();
-// export const Theme = React.createContext();
 
-class ThemeContextProvider extends Component {
-  constructor(props) {
-    super(props);
 
-    this.toggleFontColour = () => {
-      this.setState(state => {
-        const newTheme= state.theme === "Day" ? "Night" : "Day";
-        return {
-          theme : newTheme
-        };
-      });
+export const time = {
+   time1: "Day",
+   toggleTime: function (){
+   
+    if (time.time1 === "Day"){
+      time.time1="Night";
+    } else {
+     return time.time1="Day"
+      console.log(time.time1);
     };
-
-    this.state = {
-      theme: "Day",
-      toggleFontColour: this.toggleFontColour,
-    };
-  }
-
-  render() {
-    return (
-    <Provider value={this.state}>
-      {this.props.children}
-      </Provider>
-      );
-  }
+    
+    
+    // time.time1 === "Day" ? "Night" : "Day";
+    return time.time1;
+   },
 }
 
-// export default ThemeContextProvider;
-export { ThemeContextProvider, Consumer as ThemeContextConsumer };
+
+
+// const ThemeContext = React.createContext(
+//   time.time // default value
+// );
+
+// export default ThemeContext;
