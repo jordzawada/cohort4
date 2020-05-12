@@ -4,7 +4,7 @@ import DepositBtn from "./DepositBtn.js";
 import WithdrawBtn from "./WithdrawBtn.js";
 import Rename from "./Rename.js";
 import "./AccountCard.css";
-import { time }  from '../../ThemeContext.js';
+
 
 class AccountCard extends React.Component {
   constructor(props) {
@@ -12,11 +12,11 @@ class AccountCard extends React.Component {
     this.state = {};
   }
 
-   x= "clAccountCard"+time.time1;
+   
 
   render() {
     return (
-      <div className={this.x}>
+      <div >
         <div className="AccountCard">
           <div>
             <div id="idAccountName">{this.props.name}</div>

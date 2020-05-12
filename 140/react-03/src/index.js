@@ -3,17 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-// import {ThemeContextProvider} from './ThemeContext.js';
-import ThemeContext, { time }  from './ThemeContext.js';
-// value={this.state.activeTheme}
+import ThemeContextProvider  from './ThemeContext.js';
 
 
 ReactDOM.render(
   
   <React.StrictMode>
-    <ThemeContext.Provider value ={time.color1}>
-    <App />
-    </ThemeContext.Provider>
+    <ThemeContextProvider >
+      <App />
+    </ThemeContextProvider>
   </React.StrictMode>
   ,
   document.getElementById('root')

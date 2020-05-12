@@ -15,59 +15,63 @@ import IFOApp from "./components/IFO/IFOApp.js";
 import IFO from "./components/IFO.js";
 import Settings from "./components/Settings/Settings.js";
 import SettingsLabel from "./components/SettingsLabel.js";
-import ThemeContext,{time}  from './ThemeContext.js';
 
+import {ThemeContext} from "./ThemeContext.js";
 
 let TTTComp = <TTT />;
 let BearComp = <Bear />;
 // {{marginRight: spacing + 'em'}}  style={x}
 
+class App extends React.Component {
+  
+  static contextType = ThemeContext;
 
-function App() {
+  render() {
+    console.log(this.context);
+    const  {color1} = this.context
+    return (
+      // <ThemeContext.Consumer>
+      //   {(value) =>(
+      <div
+      style={{color: color1}}
+      >
+        <div>
+          <h1>React</h1>
+          <Tabs>
+            <div label=<Applogo />>
+              <Home />
+            </div>
 
+            <div label={TTTComp}>
+              <Game />
+            </div>
 
-  return (
-    // <ThemeContext.Consumer>
-    //   {(value) =>(
-    <div style={{color: time.color1}}>
-      
-      <div>
-        <h1>React</h1>
-        <Tabs>
-          <div label=<Applogo />>
-            <Home />
-          </div>
+            <div label=<Banklogo />>
+              <Bank />
+            </div>
 
-          <div label={TTTComp}>
-            <Game />
-          </div>
+            <div label=<City />>
+              <Cities />
+            </div>
 
-          <div label=<Banklogo />>
-            <Bank />
-          </div>
+            <div label={BearComp}>
+              <LinkedList />
+            </div>
 
-          <div label=<City />>
-            <Cities />
-          </div>
+            <div label=<IFO />>
+              <IFOApp />
+            </div>
 
-          <div label={BearComp}>
-            <LinkedList />
-          </div>
-
-          <div label=<IFO />>
-            <IFOApp />
-          </div>
-
-          <div label=<SettingsLabel />>
-            <Settings />
-          </div>
-
-        </Tabs>
+            <div label=<SettingsLabel />>
+              <Settings />
+            </div>
+          </Tabs>
+        </div>
       </div>
-    </div>
-    //   )}
-    // </ThemeContext.Consumer>
-  );
+      //   )}
+      //  </ThemeContext.Consumer>
+    );
+  }
 }
 
 export default App;

@@ -1,50 +1,48 @@
 import React from "react";
 // import { ThemeContextConsumer } from "../../ThemeContext.js";
 import { SketchPicker } from "react-color";
-import ThemeContext,{ time }  from '../../ThemeContext.js';
+import ThemeContext from "../../ThemeContext.js";
+// import { render } from "@testing-library/react";
 
+class Settings extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      color: "white",
+    };
+  }
 
-function Settings(props) {
-
-  // const context = ThemeContext;
-  let [color, setColor] = React.useState();
-  // let [times, setTimes] =React.useState(time.time1)
-
-  // const timeChange =()=>{
-  //    setTimes(time.toggleTime())
-  // }
-
-  const handleChangeComplete = (color) => {
-    time.changeColor(color.hex)
-    color = setColor(color);
-    
+  handleChangeComplete = (inputcolor) => {
+    // time.changeColor(color.hex)
+    this.setState({ color: inputcolor });
   };
+  render() {
+    return (
+      // <ThemeContextConsumer>
 
-  return (
-    // <ThemeContextConsumer>
-      
-        <div>
-          <h1>Theme Settings </h1>
-          {/* <p>{time.time1}</p> */}
-          {/* <button onClick={timeChange}>Click</button> */}
-          <hr />
-          <li>Text Color</li>
-          <div id="idColorPicker">
-            <SketchPicker
-              color={color}
-              onChangeComplete={handleChangeComplete}
-            />
-          </div>
-          <li>Font</li>
+      <div>
+        <h1>Theme Settings </h1>
+        {/* <p>{time.time1}</p> */}
+        {/* <button onClick={timeChange}>Click</button> */}
+        <hr />
+        <li>Text Color</li>
+        <div id="idColorPicker">
+          <SketchPicker
+            color={this.color}
+            onChangeComplete={this.handleChangeComplete}
+          />
         </div>
-      
-    //  </ThemeContextConsumer> 
-  );
+        <li>Font</li>
+      </div>
+
+      //  </ThemeContextConsumer>
+    );
+  }
 }
 
-Settings.contextType = ThemeContext;
+// Settings.contextType = ThemeContext;
 
 export default Settings;
 
-//  {(context) => ( 
+//  {(context) => (
 // )}
