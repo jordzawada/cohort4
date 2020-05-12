@@ -4,30 +4,36 @@
 
 // export default ColorContext;
 
-import React, { Component } from "react";
+import React from "react";
 
 
 export const time = {
-   time1: "Day",
-   toggleTime: function (){
+  //  time1: "Day",
+   color1 : "black",
+  //  toggleTime: function (){
    
-    if (time.time1 === "Day"){
-      time.time1="Night";
-    } else {
-     return time.time1="Day"
-      console.log(time.time1);
-    };
+  //   if (time.time1 === "Day"){
+  //     time.time1="Night";
+  //   } else {
+  //    return time.time1="Day"
+  //   };
+  //   // time.time1 === "Day" ? "Night" : "Day";
+  //   return time.time1;
+  //  },
+   
+   changeColor: function (color){
+    //  console.log(color);
+    // console.log(time.color1);
+    return time.color1=color;
     
     
-    // time.time1 === "Day" ? "Night" : "Day";
-    return time.time1;
-   },
+   }
 }
 
 
 
-// const ThemeContext = React.createContext(
-//   time.time // default value
-// );
+const ThemeContext = React.createContext(
+  time.color1 // default value
+);
 
-// export default ThemeContext;
+export default ThemeContext;

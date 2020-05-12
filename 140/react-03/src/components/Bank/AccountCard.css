@@ -1,9 +1,17 @@
-.clAccountCard{
+.clAccountCardNight{
     display: inline-grid;
     align-content: center;
     flex-direction: column;
     flex-wrap: wrap;
     color:black;
+    background-color: aqua;
+  }
+  .clAccountCardDay{
+    display: inline-grid;
+    align-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    color:white;
     background-color: aqua;
   }
 

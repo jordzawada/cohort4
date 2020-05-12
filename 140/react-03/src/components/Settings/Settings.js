@@ -1,21 +1,23 @@
-import React, { useEffect } from "react";
+import React from "react";
 // import { ThemeContextConsumer } from "../../ThemeContext.js";
 import { SketchPicker } from "react-color";
-import { time }  from '../../ThemeContext.js';
-// ThemeContext, 
+import ThemeContext,{ time }  from '../../ThemeContext.js';
+
 
 function Settings(props) {
 
   // const context = ThemeContext;
   let [color, setColor] = React.useState();
-  let [times, setTimes] =React.useState(time.time1)
+  // let [times, setTimes] =React.useState(time.time1)
 
-  const timeChange =()=>{
-     setTimes(time.toggleTime())
-  }
+  // const timeChange =()=>{
+  //    setTimes(time.toggleTime())
+  // }
 
   const handleChangeComplete = (color) => {
+    time.changeColor(color.hex)
     color = setColor(color);
+    
   };
 
   return (
@@ -23,8 +25,8 @@ function Settings(props) {
       
         <div>
           <h1>Theme Settings </h1>
-          <p>{time.time1}</p>
-          <button onClick={timeChange}>Click</button>
+          {/* <p>{time.time1}</p> */}
+          {/* <button onClick={timeChange}>Click</button> */}
           <hr />
           <li>Text Color</li>
           <div id="idColorPicker">
@@ -39,6 +41,9 @@ function Settings(props) {
     //  </ThemeContextConsumer> 
   );
 }
+
+Settings.contextType = ThemeContext;
+
 export default Settings;
 
 //  {(context) => ( 

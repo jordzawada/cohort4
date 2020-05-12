@@ -15,13 +15,21 @@ import IFOApp from "./components/IFO/IFOApp.js";
 import IFO from "./components/IFO.js";
 import Settings from "./components/Settings/Settings.js";
 import SettingsLabel from "./components/SettingsLabel.js";
+import ThemeContext,{time}  from './ThemeContext.js';
 
 
 let TTTComp = <TTT />;
 let BearComp = <Bear />;
+// {{marginRight: spacing + 'em'}}  style={x}
+
+
 function App() {
+
+
   return (
-    <div>
+    // <ThemeContext.Consumer>
+    //   {(value) =>(
+    <div style={{color: time.color1}}>
       
       <div>
         <h1>React</h1>
@@ -57,6 +65,8 @@ function App() {
         </Tabs>
       </div>
     </div>
+    //   )}
+    // </ThemeContext.Consumer>
   );
 }
 

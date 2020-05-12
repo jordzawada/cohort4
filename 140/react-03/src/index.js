@@ -4,16 +4,16 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 // import {ThemeContextProvider} from './ThemeContext.js';
-import  { time }  from './ThemeContext.js';
-// 
+import ThemeContext, { time }  from './ThemeContext.js';
+// value={this.state.activeTheme}
 
 
 ReactDOM.render(
   
   <React.StrictMode>
-    {/* <ThemeContext.Provider > */}
+    <ThemeContext.Provider value ={time.color1}>
     <App />
-    {/* </ThemeContext.Provider> */}
+    </ThemeContext.Provider>
   </React.StrictMode>
   ,
   document.getElementById('root')
