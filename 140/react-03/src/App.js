@@ -24,14 +24,18 @@ let BearComp = <Bear />;
 
 class App extends React.Component {
   
-  static contextType = ThemeContext;
+  // stsitic used to look up the hieracrhy to find the nearest context.provider. Use consumer for mroe than 1 provider.
+  // static contextType = ThemeContext;
 
   render() {
-    console.log(this.context);
-    const  {color1} = this.context
+    // console.log(this.context);
+
+    
     return (
-      // <ThemeContext.Consumer>
-      //   {(value) =>(
+      <ThemeContext.Consumer>
+         {(context) =>{
+           const  {color1} = context
+           return(
       <div
       style={{color: color1}}
       >
@@ -68,8 +72,9 @@ class App extends React.Component {
           </Tabs>
         </div>
       </div>
-      //   )}
-      //  </ThemeContext.Consumer>
+           )
+  }}
+       </ThemeContext.Consumer>
     );
   }
 }

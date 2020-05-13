@@ -1,5 +1,6 @@
 import React from 'react';
 import Board from './Board';
+import { ThemeContext } from "../ThemeContext.js";
 
 class Game extends React.Component {
   constructor(props) {
@@ -103,6 +104,13 @@ class Game extends React.Component {
       }
 
       return (
+        <ThemeContext.Consumer>
+        {(context) => {
+          const { changeColor } = context;
+          const setColor = () => {
+            changeColor(this.state.color);
+          };
+          return (
         <div>
         <h1>Tic-Tac-Toe</h1>
         
@@ -119,7 +127,12 @@ class Game extends React.Component {
             <ol>{moves}</ol>
           </div>
         </div>
+        <p>text to change</p>
+        <button onClick={setColor}> Click </button>
         </div>
+        );
+      }}
+    </ThemeContext.Consumer>
       );
     }
   }

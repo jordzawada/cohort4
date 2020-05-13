@@ -1,7 +1,7 @@
 import React from "react";
 // import { ThemeContextConsumer } from "../../ThemeContext.js";
 import { SketchPicker } from "react-color";
-import ThemeContext from "../../ThemeContext.js";
+import { ThemeContext } from "../../ThemeContext.js";
 // import { render } from "@testing-library/react";
 
 class Settings extends React.Component {
@@ -13,36 +13,44 @@ class Settings extends React.Component {
   }
 
   handleChangeComplete = (inputcolor) => {
-    // time.changeColor(color.hex)
-    this.setState({ color: inputcolor });
+    // console.log(inputcolor.hex);
+    this.setState({ color: inputcolor.hex });
+    console.log(this.state.color);
   };
+ 
   render() {
     return (
-      // <ThemeContextConsumer>
+      <ThemeContext.Consumer>
+        {(context) => {
+          const { changeColor } = context;
+          const setColor = () => {
+            changeColor(this.state.color);
+          };
+          return (
+            <div>
+              <h1>Theme Settings </h1>
+              {/* <p>{time.time1}</p> */}
 
-      <div>
-        <h1>Theme Settings </h1>
-        {/* <p>{time.time1}</p> */}
-        {/* <button onClick={timeChange}>Click</button> */}
-        <hr />
-        <li>Text Color</li>
-        <div id="idColorPicker">
-          <SketchPicker
-            color={this.color}
-            onChangeComplete={this.handleChangeComplete}
-          />
-        </div>
-        <li>Font</li>
-      </div>
+              <hr />
+              <li>Text Color</li>
+              <div id="idColorPicker">
+                <SketchPicker
+                  color={this.state.color}
+                  onChangeComplete={this.handleChangeComplete}
+                  
+                />
 
-      //  </ThemeContextConsumer>
+                <button onClick={setColor}>
+                  Set Color to {this.state.color}
+                </button>
+              </div>
+              <li>Font</li>
+            </div>
+          );
+        }}
+      </ThemeContext.Consumer>
     );
   }
 }
 
-// Settings.contextType = ThemeContext;
-
 export default Settings;
-
-//  {(context) => (
-// )}
