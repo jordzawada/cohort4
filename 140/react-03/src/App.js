@@ -42,7 +42,7 @@ class App extends React.Component {
         <div>
           <h1>React</h1>
           <Tabs>
-            <div label=<Applogo />>
+            <div label= <Applogo />>
               <Home />
             </div>
 

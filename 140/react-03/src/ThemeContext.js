@@ -10,7 +10,7 @@ class ThemeContextProvider extends React.Component {
   
 
     changeColor=(inputColor)=>{
-      console.log("clicked");
+      console.log("clicked from context");
       // this.setState({color1: this.state.color1 === "white" ? "black" : "white"})
       this.setState({color1: inputColor})
       // return inputColor;
