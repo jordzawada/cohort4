@@ -1,31 +1,44 @@
 const functions = {
 
-    makeNewCard :(x) => {
-        let node= document.getElementById(x);
-        let clone= node.cloneNode(true)
+    counter:1,
+
+    counterUp : ()=>{
+        let current= functions.counter;
+        current++;
+        functions.counter= current;
+    },
+
+    makeNewCard :(node) => {
+        // let node= document.getElementById(id);
+        let clone= node.cloneNode(true);
+        functions.counterUp();
         return clone;
         
     },
 
-    addCardBefore :(leftSide) =>{    
-        let x = document.getElementById(leftSide).children[1];
-        x=x.getAttribute('id');
-        let node = functions.makeNewCard(x);
-        let getEle = document.getElementById(leftSide);
-        let getPos = getEle.children.length;
-        getEle.insertBefore(node,getEle.childNodes[getPos]);
+    addCardBefore :(event) =>{    
+        let e = event;
+        let cardDivNode = e.parentElement;
+        let node = functions.makeNewCard(cardDivNode);
+        node.getElementsByTagName('h3')[0].textContent=`This is Card ${functions.counter}`;
+        cardDivNode.parentElement.insertBefore(node,cardDivNode);
     },
 
-    addCardAfter :(leftSide) =>{
-        let x = document.getElementById(leftSide).children[1];
-        x=x.getAttribute('id');
-        let node = functions.makeNewCard(x); 
-        let getEle = document.getElementById(leftSide);
-        let getPos = getEle.children.length;
-        node.children[0].textContent= "Card "+ getPos;
+    addCardAfter :(event) =>{
+        let e = event;
+        console.log(e);
+        let cardDivNode = e.parentElement;  
+        let node = functions.makeNewCard(cardDivNode);
+        node.getElementsByTagName('h3')[0].textContent=`This is Card ${functions.counter}`;
+        // let targetPosition =1;
+        // console.log(targetPosition);
+        
+        cardDivNode.parentElement.insertBefore(node,cardDivNode.nextSibling);
+        
+        
         
 
-        getEle.appendChild(node);
+        // cardDivNode.parentElement.appendChild(node);
     },
     
     delCard :(target) =>{
