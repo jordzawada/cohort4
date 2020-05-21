@@ -23,7 +23,7 @@ class Rename extends React.Component {
     return (
       <div>
         <TextField
-          id={this.props.keys}  
+          id={String(this.props.keys)}  
           label="New Name"
           variant="filled"
           onKeyDown={this.keyPress}

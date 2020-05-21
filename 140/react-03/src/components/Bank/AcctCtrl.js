@@ -204,6 +204,7 @@ class AcctCtrl extends React.Component {
         <AccountCard
           name={this.state.accounts[i].name}
           keys={this.state.accounts[i].key}
+          key={i}
           balance={this.state.accounts[i].balance}
           handleDepositClick={() =>
             this.handleDepositClick(this.state.accounts[i].key)

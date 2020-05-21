@@ -12,11 +12,11 @@ class Settings extends React.Component {
     };
   }
 
-  // handleChangeComplete = (inputcolor) => {
-  //   // console.log(inputcolor.hex);
-  //   this.setState({ color: inputcolor.hex });
-  //   // console.log(this.state.color);
-  // };
+  handleChangeComplete = (inputcolor) => {
+    // console.log(inputcolor.hex);
+    this.setState({ color: inputcolor.hex });
+    // console.log(this.state.color);
+  };
 
   render() {
 
@@ -28,8 +28,8 @@ class Settings extends React.Component {
           {(context) => {
             const { changeColor } = context;
             const setColor = () => {
-              changeColor("black");
-              // changeColor(this.state.color);
+              // changeColor("black");
+              changeColor(this.state.color);
               // console.log("clicked");
             };
             return (
@@ -38,10 +38,10 @@ class Settings extends React.Component {
                 <hr />
                 <li>Text Color</li>
                 <div id="idColorPicker">
-                  {/* <SketchPicker
+                  <SketchPicker
                   color={this.state.color}
                   onChangeComplete={this.handleChangeComplete}
-                /> */}
+                />
                   <button onClick={setColor}>
                     Set Color to {this.state.color}
                   </button>

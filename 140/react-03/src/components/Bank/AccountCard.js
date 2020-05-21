@@ -41,7 +41,7 @@ class AccountCard extends React.Component {
             renameValue={this.props.renameValue}
           />
           <div>
-            <AcctDeleteBtn delete={this.props.delete} key={this.props.key} />
+            <AcctDeleteBtn delete={this.props.delete} keys={this.props.keys} />
           </div>
         </div>
       </div>
