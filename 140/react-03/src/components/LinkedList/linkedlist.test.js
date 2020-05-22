@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import LinkedList from "./LinkedListObjects.js";
-import LinkedListApp from "./LinkedList.js";
+import ListCard from "./ListCard.js";
 
 test("linked list tests",()=>{
   const linkedList = new LinkedList();
@@ -39,8 +39,20 @@ test("linked list tests",()=>{
 });
 
 test("React tests",()=>{
-  render(<LinkedListApp></LinkedListApp >)
+  const add = jest.fn();
+  render(<ListCard 
+    getPosition={add}
+    />)
+
+  fireEvent.click(screen.getByText(/subject/i));
+  expect(add.mock.calls.length).toBe(1);
+  fireEvent.click(screen.getByText(/subject/i));
+  expect(add.mock.calls.length).toBe(2);
   // screen.debug()
-  // expect().toBe();
+  
 
 });
+
+function click(txt) {
+  fireEvent.click(screen.getByText(txt));
+}

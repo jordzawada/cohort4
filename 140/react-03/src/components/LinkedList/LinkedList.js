@@ -24,11 +24,11 @@ function LinkedListApp() {
         setPosition(i);
     }
     const mount = () => {
-        console.log('mounted')
+        // console.log('mounted')
         // ...
       
         const unmount = () => {
-          console.log('unmounted');
+        //   console.log('unmounted');
           linkedList1= new LinkedList();
           // ...
         }

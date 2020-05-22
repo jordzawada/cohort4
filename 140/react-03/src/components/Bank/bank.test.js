@@ -29,17 +29,16 @@ test("bank tests", () => {
 });
 
 
-test("controller component", () => {
-    // const depositPress = jest.fn();
-    // const withdrawPress = jest.fn();
-    render(<AcctCtrl
-    />);
-    // screen.debug();
-    // screen.getByText(/Deposit/i);
-    // click("Deposit");
-    // expect(depositPress.mock.calls.length).toBe(1);
+// test("controller component", () => {
+//     const newAccount = jest.fn();
+    
+//     render(<AcctCtrl />);
+//     // screen.debug();
+//     // console.log(screen.getByText(/New Account/i));
+//     // click("Deposit");
+//     // expect(depositPress.mock.calls.length).toBe(1);
    
   
    
-  });
+//   });
   
