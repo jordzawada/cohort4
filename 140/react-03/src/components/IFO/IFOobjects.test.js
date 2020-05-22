@@ -34,25 +34,16 @@ test("POJO tests",()=>{
 });
 
 test("React tests",()=>{
- 
-  // const myCountFunc = jest.fn();
+//  noting that can be tested
+  // const add = jest.fn();
+  // render(<ListCard 
+  //   getPosition={add}
+  //   />)
 
-  //Test that the app renders HTML
-  let {queryByText} = render(<IFOApp></IFOApp >);
-  // console.log(container);
-  let test1 = queryByText('FIFO');
-  console.log(test1);
-  
-  expect(test1.innerHTML).toBe('FIFO');
-  
-  // screen.debug();
-  // expect().toBe();
-
-  // test that buttons are made.
-  const el = screen.getByText(/Random Name/i);
-  expect(el.id).toBe("idRandName")
-  
-  // fireEvent.click(el);
-  //   console.log(myCountFunc.mock.calls.length);
+  // fireEvent.click(screen.getByText(/subject/i));
+  // expect(add.mock.calls.length).toBe(1);
+  // fireEvent.click(screen.getByText(/subject/i));
+  // expect(add.mock.calls.length).toBe(2);
+  // // screen.debug()
 
 });
