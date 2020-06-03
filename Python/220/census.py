@@ -7,11 +7,14 @@ totals = {
     "total_Class":0,
     "total_Sector":0,
 }
+lines =0;
 
 def totalFunction():
     Classes={}
     Sectors ={}
+    global lines
     for x in census_f:
+        lines = lines +1;
         # print( x[0])
         if (x[0] == 'CLASS'):
             # print(x[0])
@@ -27,7 +30,14 @@ def totalFunction():
 
     totals["total_Class"] = Classes   
     totals["total_Sector"] = Sectors
-
-print(totals["total_Class"])
-
 totalFunction()
+
+# print(f'there are {lines} lines')
+# print(totals)
+
+f= open("report.txt","w")
+f.write (f'there are {lines} lines\n')
+f.write(f'Total Class\n{totals["total_Class"]}')
+f.write(f'Total Sector\n{totals["total_Sector"]}')
+f.close()
+
