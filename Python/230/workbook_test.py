@@ -21,10 +21,11 @@ def test_answer():
     assert wb['invoices']['A1'].value == 'id'
     assert wb['invoices']['A2'].value == 1
     assert wb['invoices']['A3'].value == 2
-    
 
     assert wb.sheetnames[2] =='line items'
     assert wb['line items']['B1'].value == 'qty'
 
     assert wb.sheetnames[3] == 'product'
     assert wb['product']['B1'].value == 'name'
+
+    loaded= workbook.createInvoice(1)  

@@ -1,4 +1,5 @@
 from openpyxl import Workbook
+from openpyxl import load_workbook
 
 def createWorkbook():
     wb = Workbook()
@@ -12,6 +13,7 @@ def createWorkbook():
     ws = wb.create_sheet("invoices")
     ws['A1'] = "id"
     ws['B1'] = "customer id"
+    ws['C1'] = "date"
     ws['A2'] =  1
     ws['A3'] = 2
     ws['B2'] = 1
@@ -35,4 +37,27 @@ def createWorkbook():
     ws['B3'] = 'nuts'
     wb.save('billy.xlsx')
 
-createWorkbook()
+def createInvoice(invNum):
+    # print('invoice')
+    wb=load_workbook('billy.xlsx')
+    for row in wb['invoices']['A']:
+        if row.value == invNum:
+            customerID = wb['invoices'].cell(row=row.row, column=row.column+1).value
+    for row in wb['customers']['A']:
+        if row.value == customerID:
+            customerName = wb['customers'].cell(row=row.row, column=row.column+1).value
+    lines= {}        
+    for row in wb['line items']['A']: 
+        x = row.value  
+        for productID in wb['product']['A']:
+            if x == productID.value:
+                x = wb['product'].cell(row=productID.row,column=productID.column+1).value
+        lines[x] = wb['line items'].cell(row=row.row, column=row.column+1).value
+        # print(lines)  
+    
+    print(f'Invoice {invNum} for customer:{customerName}, has items:' )
+    for x in lines:
+        print(x, lines[x] )           
+
+# createWorkbook()
+
