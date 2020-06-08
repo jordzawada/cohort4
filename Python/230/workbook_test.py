@@ -28,4 +28,4 @@ def test_answer():
     assert wb.sheetnames[3] == 'product'
     assert wb['product']['B1'].value == 'name'
 
-    loaded= workbook.createInvoice(1)  
+    # loaded= workbook.createInvoice(1)  
