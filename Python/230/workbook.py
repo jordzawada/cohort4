@@ -1,6 +1,12 @@
 from openpyxl import Workbook
 from openpyxl import load_workbook
 
+
+# def import():
+# this function will have a bunch of searches that looks in a variety of files. the goal is to match tabs and columns and turn them into normalized rows. Run the verify function after this to make sure the scraped data is good. 
+
+
+
 def createWorkbook():
     wb = Workbook()
     ws = wb.active
