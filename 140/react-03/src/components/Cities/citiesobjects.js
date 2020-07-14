@@ -326,6 +326,7 @@ export class City {
     }
   }
   whichSphere() {
+    // equator case
     if (this.Latitude >= 0) {
       return "City is in Northern Hemisphere";
     } else {
